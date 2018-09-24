@@ -39,21 +39,9 @@ const requiredFields = { accounts: [network] };
 export default {
   name: 'app',
   data: () => ({}),
-  created() {
-    // @TODO: replace with Scatter JS
-    document.addEventListener('scatterLoaded', () => {
-      console.log('Scatter Loaded');
-      this.handleScatterLoaded();
-    });
-  },
   methods: {
     ...mapActions(['initScatter']),
     ...mapMutations(['setIdentity']),
-    handleScatterLoaded() {
-      const { scatter } = window;
-      this.initScatter(scatter);
-      this.requestId();
-    },
     async requestId() {
       await this.suggestNetworkSetting();
       const identity = await this.scatter.getIdentity(requiredFields);
@@ -62,9 +50,6 @@ export default {
     async forgetId() {
       await this.scatter.forgetIdentity();
       this.setIdentity(null);
-    },
-    async buy() {
-      const amountOfEOS = prompt('请输入你要购少 KBY 等值的 EOS？');
     },
     async suggestNetworkSetting() {
       try {

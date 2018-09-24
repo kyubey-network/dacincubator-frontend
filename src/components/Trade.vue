@@ -4,9 +4,11 @@
       <el-row>
         <el-col :span="12">
           <h2 class="subtitle"> 买 </h2>
+          <el-button type="primary"> 简陋购买 </el-button>
         </el-col>
         <el-col :span="12">
           <h2 class="subtitle"> 卖 </h2>
+          <el-button type="danger" disabled="disabled"> 暂不可用 </el-button>
         </el-col>
       </el-row>
     </el-card>
@@ -23,38 +25,10 @@ export default {
   name: 'app',
   data: () => ({}),
   created() {
-    // @TODO: replace with Scatter JS
-    document.addEventListener('scatterLoaded', () => {
-      console.log('Scatter Loaded');
-      this.handleScatterLoaded();
-    });
   },
   methods: {
-    ...mapActions(['initScatter']),
-    ...mapMutations(['setIdentity']),
-    handleScatterLoaded() {
-      const { scatter } = window;
-      this.initScatter(scatter);
-      this.requestId();
-    },
-    async requestId() {
-      await this.suggestNetworkSetting();
-      const identity = await this.scatter.getIdentity(requiredFields);
-      this.setIdentity(identity);
-    },
-    async forgetId() {
-      await this.scatter.forgetIdentity();
-      this.setIdentity(null);
-    },
     async buy() {
       const amountOfEOS = prompt('请输入你要购少 KBY 等值的 EOS？');
-    },
-    async suggestNetworkSetting() {
-      try {
-        await this.scatter.suggestNetwork(network);
-      } catch (error) {
-        console.info('User canceled to suggestNetwork');
-      }
     },
   },
   computed: {
