@@ -37,7 +37,7 @@ const network = networks.kylin;
 const requiredFields = { accounts: [network] };
 
 export default {
-  name: 'app',
+  name: 'Dashboard',
   data: () => ({}),
   methods: {
     ...mapActions(['initScatter']),

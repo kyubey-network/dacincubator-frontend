@@ -22,7 +22,7 @@ const network = networks.kylin;
 const requiredFields = { accounts: [network] };
 
 export default {
-  name: 'app',
+  name: 'Trade',
   data: () => ({}),
   created() {
   },
