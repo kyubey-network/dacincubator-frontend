@@ -23,29 +23,61 @@
               </div>
             </div>
         </el-col>
-        <el-col :span="6">  </el-col>
+        <el-col :span="6">
+            <div class="balance-stat">
+              <p>账户余额</p>
+                <h2 class="small-title"> {{eosBalance}} </h2>
+                <h2 class="small-title"> {{kbyBalance}} </h2>
+            </div>
+        </el-col>
         <el-col :span="6">  </el-col>
       </el-row>
     </el-card>
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
-import { networks } from '../config';
+import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+import { networks } from "../config";
 
 const network = networks.kylin;
 const requiredFields = { accounts: [network] };
 
 export default {
-  name: 'Dashboard',
-  data: () => ({}),
+  name: "Dashboard",
+  data: () => ({
+    eosBalance: "0.0000 EOS",
+    kbyBalance: "0.0000 KBY"
+  }),
+  created() {
+    if (this.account) {
+      this.updateBalanceStat()
+    }
+  },
+  watch: {
+    account(val) {
+      if (val) {
+        this.updateBalanceStat()
+      }
+    }
+  },
   methods: {
-    ...mapActions(['initScatter']),
-    ...mapMutations(['setIdentity']),
+    ...mapActions(["initScatter"]),
+    ...mapMutations(["setIdentity"]),
     async requestId() {
       await this.suggestNetworkSetting();
       const identity = await this.scatter.getIdentity(requiredFields);
       this.setIdentity(identity);
+    },
+    async updateBalanceStat() {
+      const { account , eos} = this;
+      eos.getCurrencyBalance('eosio.token', account.name, 'EOS')
+        .then(res => {
+          this.eosBalance = res[0];
+        })
+      eos.getCurrencyBalance('dacincubator', account.name, 'KBY')
+        .then(res => {
+          this.kbyBalance = res[0];
+        })
     },
     async forgetId() {
       await this.scatter.forgetIdentity();
@@ -55,14 +87,14 @@ export default {
       try {
         await this.scatter.suggestNetwork(network);
       } catch (error) {
-        console.info('User canceled to suggestNetwork');
+        console.info("User canceled to suggestNetwork");
       }
-    },
+    }
   },
   computed: {
-    ...mapState(['identity', 'scatter', 'eos', 'account']),
-    ...mapGetters(['account']),
-  },
+    ...mapState(["identity", "scatter", "eos", "account"]),
+    ...mapGetters(["account"])
+  }
 };
 </script>
 
