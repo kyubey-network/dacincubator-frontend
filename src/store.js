@@ -13,12 +13,18 @@ export default new Vuex.Store({
     identity: null,
     eos: null,
   },
+  getters: {
+    account: ({ scatter }) => {
+      if (!scatter) { return null }
+      const { identity } = scatter
+      return identity ? identity.accounts.find(({ blockchain }) => blockchain === 'eos') : null
+    },
+  },
   mutations: {
     setScatter(state, scatter) {
       state.scatter = scatter;
       state.eos = scatter.eos(network, Eos, {});
       state.identity = scatter.identity;
-      state.account = scatter.identity.accounts.find(({ blockchain }) => blockchain === 'eos');
     },
     setIdentity(state, identity) {
       state.identity = identity;

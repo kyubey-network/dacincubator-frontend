@@ -1,52 +1,65 @@
 <template>
   <div id="app">
     <div class="header">
-      <h1 class="title"> Kyubey IBO <el-tag>Beta on Kylin</el-tag> </h1>
+      <el-badge value="Beta on Kylin" class="item">
+          <h1 class="title"> Kyubey IBO </h1>
+      </el-badge >
       <h2 class="subtitle"> 请认准 Kyubey 官方域名以防损失 </h2>
     </div>
     <el-card class="stat">
-      <h2 class="subtitle">账户状态</h2>
-      <div class="scatter-stat">
-        <p> Scatter 状态：
-          {{ scatter ? "已加载" : "未发现" }}
-        </p>
-      </div>
-      <div class="scatter-id-stat">
-        <div class="logined" v-if="scatter.identity">
-          你的账户是: {{username}}
-          <el-button type="danger"  @click="forgetId">退出身份</el-button>
-        </div>
-        <div class="not-login" v-else>
-          你还没登录哦
-          <el-button type="primary" :disabled="!scatter" @click="requestId">登录</el-button>
-        </div>
-      </div>
+      <h2 class="subtitle">状态栏</h2>
+      <el-row>
+        <el-col :span="6"> 
+          <div class="scatter-stat">
+            <p>Scatter 状态</p>
+            <h2 class="small-title">{{ scatter ? "已加载" : "未发现" }}</h2>
+          </div>
+       </el-col>
+        <el-col :span="6">
+            <div class="scatter-id-stat">
+              <p>你当前的账户</p>
+              <div class="logined" v-if="account">
+                <h2 class="small-title">{{account.name}}</h2>
+                <el-button type="danger"  @click="forgetId">退出身份</el-button>
+              </div>
+              <div class="not-login" v-else>
+                <h2 class="small-title"> 未登录 </h2> 
+                <el-button type="primary" :disabled="!scatter" @click="requestId">
+                  通过 Scatter 登录
+                </el-button>
+              </div>
+            </div>
+        </el-col>
+        <el-col :span="6">  </el-col>
+        <el-col :span="6">  </el-col>
+      </el-row>
+
+
     </el-card>
 
   </div>
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex';
-import { networks } from './config';
+import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+import { networks } from "./config";
 
 const network = networks.kylin;
 const requiredFields = { accounts: [network] };
 
 export default {
-  name: 'app',
-  data: () => ({
-  }),
+  name: "app",
+  data: () => ({}),
   created() {
     // @TODO: replace with Scatter JS
-    document.addEventListener('scatterLoaded', () => {
-      console.log('Scatter Loaded');
+    document.addEventListener("scatterLoaded", () => {
+      console.log("Scatter Loaded");
       this.handleScatterLoaded();
     });
   },
   methods: {
-    ...mapActions(['initScatter']),
-    ...mapMutations(['setIdentity']),
+    ...mapActions(["initScatter"]),
+    ...mapMutations(["setIdentity"]),
     handleScatterLoaded() {
       const { scatter } = window;
       this.initScatter(scatter);
@@ -62,28 +75,27 @@ export default {
       this.setIdentity(null);
     },
     async buy() {
-      const amountOfEOS = prompt('请输入你要购少 KBY 等值的 EOS？');
+      const amountOfEOS = prompt("请输入你要购少 KBY 等值的 EOS？");
     },
     async suggestNetworkSetting() {
       try {
         await this.scatter.suggestNetwork(network);
       } catch (error) {
-        console.info('User canceled to suggestNetwork');
+        console.info("User canceled to suggestNetwork");
       }
-    },
+    }
   },
   computed: {
-    ...mapState(['identity', 'scatter', 'eos', 'account']),
-    ...mapState({
-      account_name: state => state.account.name,
-    }),
+    ...mapState(["identity", "scatter", "eos", "account"]),
+    ...mapGetters(['account'])
     // account() {
     //   return this.identity.accounts.find(({ blockchain }) => blockchain === 'eos');
     // },
-    username() {
-      return this.account.name;
-    },
-  },
+    // username() {
+    //   const { account } = this;
+    //   return account ? account.name : null;
+    // }
+  }
 };
 </script>
 
