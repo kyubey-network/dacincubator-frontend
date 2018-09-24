@@ -1,20 +1,20 @@
 <template>
-  <div id="app">
-    <div class="header">
-      <el-badge value="Beta on Kylin" class="item">
-          <h1 class="title"> Kyubey IBO </h1>
-      </el-badge >
-      <h2 class="subtitle"> 请认准 Kyubey 官方域名以防损失 </h2>
-    </div>
-    <Dashboard />
-    <Trade />
-  </div>
+    <el-card class="stat">
+      <h1 class="title">交易</h1>
+      <el-row>
+        <el-col :span="12">
+          <h2 class="subtitle"> 买 </h2>
+        </el-col>
+        <el-col :span="12">
+          <h2 class="subtitle"> 卖 </h2>
+        </el-col>
+      </el-row>
+    </el-card>
 </template>
 
 <script>
-import { Dashboard, Trade } from './components';
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
-import { networks } from './config';
+import { networks } from '../config';
 
 const network = networks.kylin;
 const requiredFields = { accounts: [network] };
@@ -22,7 +22,6 @@ const requiredFields = { accounts: [network] };
 export default {
   name: 'app',
   data: () => ({}),
-  components: { Dashboard, Trade },
   created() {
     // @TODO: replace with Scatter JS
     document.addEventListener('scatterLoaded', () => {
@@ -61,13 +60,6 @@ export default {
   computed: {
     ...mapState(['identity', 'scatter', 'eos', 'account']),
     ...mapGetters(['account']),
-    // account() {
-    //   return this.identity.accounts.find(({ blockchain }) => blockchain === 'eos');
-    // },
-    // username() {
-    //   const { account } = this;
-    //   return account ? account.name : null;
-    // }
   },
 };
 </script>
