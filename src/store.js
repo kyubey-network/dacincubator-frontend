@@ -15,9 +15,9 @@ export default new Vuex.Store({
   },
   getters: {
     account: ({ scatter }) => {
-      if (!scatter) { return null }
-      const { identity } = scatter
-      return identity ? identity.accounts.find(({ blockchain }) => blockchain === 'eos') : null
+      if (!scatter) { return null; }
+      const { identity } = scatter;
+      return identity ? identity.accounts.find(({ blockchain }) => blockchain === 'eos') : null;
     },
   },
   mutations: {

@@ -9,7 +9,7 @@
     <el-card class="stat">
       <h2 class="subtitle">状态栏</h2>
       <el-row>
-        <el-col :span="6"> 
+        <el-col :span="6">
           <div class="scatter-stat">
             <p>Scatter 状态</p>
             <h2 class="small-title">{{ scatter ? "已加载" : "未发现" }}</h2>
@@ -23,7 +23,7 @@
                 <el-button type="danger"  @click="forgetId">退出身份</el-button>
               </div>
               <div class="not-login" v-else>
-                <h2 class="small-title"> 未登录 </h2> 
+                <h2 class="small-title"> 未登录 </h2>
                 <el-button type="primary" :disabled="!scatter" @click="requestId">
                   通过 Scatter 登录
                 </el-button>
@@ -41,25 +41,25 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
-import { networks } from "./config";
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
+import { networks } from './config';
 
 const network = networks.kylin;
 const requiredFields = { accounts: [network] };
 
 export default {
-  name: "app",
+  name: 'app',
   data: () => ({}),
   created() {
     // @TODO: replace with Scatter JS
-    document.addEventListener("scatterLoaded", () => {
-      console.log("Scatter Loaded");
+    document.addEventListener('scatterLoaded', () => {
+      console.log('Scatter Loaded');
       this.handleScatterLoaded();
     });
   },
   methods: {
-    ...mapActions(["initScatter"]),
-    ...mapMutations(["setIdentity"]),
+    ...mapActions(['initScatter']),
+    ...mapMutations(['setIdentity']),
     handleScatterLoaded() {
       const { scatter } = window;
       this.initScatter(scatter);
@@ -75,19 +75,19 @@ export default {
       this.setIdentity(null);
     },
     async buy() {
-      const amountOfEOS = prompt("请输入你要购少 KBY 等值的 EOS？");
+      const amountOfEOS = prompt('请输入你要购少 KBY 等值的 EOS？');
     },
     async suggestNetworkSetting() {
       try {
         await this.scatter.suggestNetwork(network);
       } catch (error) {
-        console.info("User canceled to suggestNetwork");
+        console.info('User canceled to suggestNetwork');
       }
-    }
+    },
   },
   computed: {
-    ...mapState(["identity", "scatter", "eos", "account"]),
-    ...mapGetters(['account'])
+    ...mapState(['identity', 'scatter', 'eos', 'account']),
+    ...mapGetters(['account']),
     // account() {
     //   return this.identity.accounts.find(({ blockchain }) => blockchain === 'eos');
     // },
@@ -95,7 +95,7 @@ export default {
     //   const { account } = this;
     //   return account ? account.name : null;
     // }
-  }
+  },
 };
 </script>
 
