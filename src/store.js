@@ -44,21 +44,21 @@ export default new Vuex.Store({
   actions: {
     initScatter({ commit, dispatch }, scatter) {
       commit('setScatter', scatter);
-      dispatch('updatePrice')
-      dispatch('updateBalance')
+      dispatch('updatePrice');
+      dispatch('updateBalance');
     },
     async updatePrice({ commit }) {
-      const price = await getTokenPrice()
+      const price = await getTokenPrice();
       commit('setTokenPrice', price);
     },
     updateBalance({ commit }) {
       getMyBalancesByContract({ symbol: 'eos' })
-        .then(price => { 
-          commit('setBalance', { symbol: 'eos', balance: price[0] }); 
+        .then((price) => {
+          commit('setBalance', { symbol: 'eos', balance: price[0] });
         });
       getMyBalancesByContract({ symbol: 'kbyy', tokenContract: 'dacincubator' })
-        .then(price => { 
-          commit('setBalance', { symbol: 'kbyy', balance: price[0] }); 
+        .then((price) => {
+          commit('setBalance', { symbol: 'kbyy', balance: price[0] });
         });
     },
     setIdentity({ commit }, identity) {

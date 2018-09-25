@@ -27,7 +27,7 @@
               <p>账户余额 <el-button icon="el-icon-refresh" circle @click="updateBalance" /> </p>
                 <h2 class="small-title"> {{balance.eos}} </h2>
                 <h2 class="small-title"> {{balance.kbyy}} </h2>
-                
+
             </div>
         </el-col>
         <el-col :span="6">
