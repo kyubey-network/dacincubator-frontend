@@ -25,11 +25,17 @@
         <el-col :span="6">
             <div class="balance-stat">
               <p>账户余额</p>
-                <h2 class="small-title"> {{eosBalance}} </h2>
-                <h2 class="small-title"> {{kbyBalance}} </h2>
+                <h2 class="small-title"> {{balance.eos}} <el-button icon="el-icon-refresh" circle /></h2>
+                <h2 class="small-title"> {{balance.kbyy}} <el-button icon="el-icon-refresh" circle /></h2>
             </div>
         </el-col>
-        <el-col :span="6">  </el-col>
+        <el-col :span="6">
+              <div class="token-price-stat">
+              <p>KBYY 价格</p>
+                <h2 class="small-title"> {{tokenPrice}} EOS / KBY </h2>
+                <el-button icon="el-icon-refresh" circle />
+            </div>
+        </el-col>
       </el-row>
     </el-card>
 </template>
@@ -44,20 +50,8 @@ const requiredFields = { accounts: [network] };
 export default {
   name: 'Dashboard',
   data: () => ({
-    eosBalance: '0.0000 EOS',
-    kbyBalance: '0.0000 KBYY',
   }),
   created() {
-    if (this.account) {
-      this.updateBalanceStat();
-    }
-  },
-  watch: {
-    account(val) {
-      if (val) {
-        this.updateBalanceStat();
-      }
-    },
   },
   methods: {
     ...mapActions(['setIdentity']),
@@ -65,17 +59,6 @@ export default {
       await this.suggestNetworkSetting();
       const identity = await this.scatter.getIdentity(requiredFields);
       this.setIdentity(identity);
-    },
-    async updateBalanceStat() {
-      const { account, eos } = this;
-      eos.getCurrencyBalance('eosio.token', account.name, 'EOS')
-        .then((res) => {
-          this.eosBalance = res[0];
-        });
-      eos.getCurrencyBalance('dacincubator', account.name, 'KBYY')
-        .then((res) => {
-          this.kbyBalance = res[0];
-        });
     },
     async forgetId() {
       await this.scatter.forgetIdentity();
@@ -90,11 +73,14 @@ export default {
     },
   },
   computed: {
-    ...mapState(['identity', 'scatter', 'eos', 'account']),
+    ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'tokenPrice']),
     ...mapGetters(['account']),
   },
 };
 </script>
 
 <style scoped>
+.balance-stat .small-title {
+  text-align: right
+}
 </style>
