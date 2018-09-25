@@ -36,48 +36,48 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
-import { networks } from "../config";
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
+import { networks } from '../config';
 
 const network = networks.kylin;
 const requiredFields = { accounts: [network] };
 
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   data: () => ({
-    eosBalance: "0.0000 EOS",
-    kbyBalance: "0.0000 KBY"
+    eosBalance: '0.0000 EOS',
+    kbyBalance: '0.0000 KBY',
   }),
   created() {
     if (this.account) {
-      this.updateBalanceStat()
+      this.updateBalanceStat();
     }
   },
   watch: {
     account(val) {
       if (val) {
-        this.updateBalanceStat()
+        this.updateBalanceStat();
       }
-    }
+    },
   },
   methods: {
-    ...mapActions(["initScatter"]),
-    ...mapMutations(["setIdentity"]),
+    ...mapActions(['initScatter']),
+    ...mapMutations(['setIdentity']),
     async requestId() {
       await this.suggestNetworkSetting();
       const identity = await this.scatter.getIdentity(requiredFields);
       this.setIdentity(identity);
     },
     async updateBalanceStat() {
-      const { account , eos} = this;
+      const { account, eos } = this;
       eos.getCurrencyBalance('eosio.token', account.name, 'EOS')
-        .then(res => {
+        .then((res) => {
           this.eosBalance = res[0];
-        })
+        });
       eos.getCurrencyBalance('dacincubator', account.name, 'KBY')
-        .then(res => {
+        .then((res) => {
           this.kbyBalance = res[0];
-        })
+        });
     },
     async forgetId() {
       await this.scatter.forgetIdentity();
@@ -87,24 +87,16 @@ export default {
       try {
         await this.scatter.suggestNetwork(network);
       } catch (error) {
-        console.info("User canceled to suggestNetwork");
+        console.info('User canceled to suggestNetwork');
       }
-    }
+    },
   },
   computed: {
-    ...mapState(["identity", "scatter", "eos", "account"]),
-    ...mapGetters(["account"])
-  }
+    ...mapState(['identity', 'scatter', 'eos', 'account']),
+    ...mapGetters(['account']),
+  },
 };
 </script>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
 </style>
