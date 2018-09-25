@@ -52,7 +52,7 @@ export default {
       this.setIdentity(null);
     },
     async buy() {
-      const amountOfEOS = prompt('请输入你要购少 KBYY 等值的 EOS？');
+      const amountOfEOS = prompt('请输入你要购少 KBY 等值的 EOS？');
     },
     async suggestNetworkSetting() {
       try {

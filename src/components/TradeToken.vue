@@ -54,7 +54,7 @@ export default {
     tokenB: {
       type: Object,
       default: () => ({
-        name: 'KBYY',
+        name: 'KBY',
         contract: 'dacincubator',
       }),
     },
@@ -107,13 +107,13 @@ export default {
     },
     async sell() {
       const { eos, account } = this;
-      const amountOfKBYY = Number(prompt('请输入你出售多少个 KBYY？ （格式1.0000)')).toFixed(4);
+      const amountOfKBY = Number(prompt('请输入你出售多少个 KBY？ （格式1.0000)')).toFixed(4);
       const memo = 'sell';
       try {
         await this.eosTokenTransfer({
           tokenContract: 'dacincubator',
           to: 'dacincubator',
-          amount: `${amountOfKBYY} KBYY`,
+          amount: `${amountOfKBY} KBY`,
           memo,
           account,
         });

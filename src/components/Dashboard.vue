@@ -32,7 +32,7 @@
         </el-col>
         <el-col :span="6">
               <div class="token-price-stat">
-              <p>KBYY 价格 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
+              <p>KBY 价格 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
                 <h2 class="small-title"> {{tokenPrice}} / KBY </h2>
             </div>
         </el-col>

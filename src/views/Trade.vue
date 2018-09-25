@@ -33,7 +33,7 @@ export default {
   methods: {
     async buy() {
       const { eos, account } = this;
-      const amountOfEOS = Number(prompt('请输入你要购少 KBYY 等值的 EOS？（格式1.0000)'));
+      const amountOfEOS = Number(prompt('请输入你要购少 KBY 等值的 EOS？（格式1.0000)'));
       const memo = 'buy';
       try {
         await eos.transfer(
@@ -68,13 +68,13 @@ export default {
     },
     async sell() {
       const { eos, account } = this;
-      const amountOfKBYY = Number(prompt('请输入你出售多少个 KBYY？ （格式1.0000)')).toFixed(4);
+      const amountOfKBY = Number(prompt('请输入你出售多少个 KBY？ （格式1.0000)')).toFixed(4);
       const memo = 'sell';
       try {
         await this.eosTokenTransfer({
           tokenContract: 'dacincubator',
           to: 'dacincubator',
-          amount: `${amountOfKBYY} KBYY`,
+          amount: `${amountOfKBY} KBY`,
           memo,
           account,
         });

@@ -14,7 +14,7 @@ export default new Vuex.Store({
     eos: null,
     balance: {
       eos: '0.0000 EOS',
-      kbyy: '0.0000 KBYY',
+      kbyy: '0.0000 KBY',
     },
     tokenPrice: '0.0000 EOS',
   },
