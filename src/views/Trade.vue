@@ -1,13 +1,15 @@
 <template>
     <el-card class="stat">
-      <h1 class="title">交易</h1>
+      <el-alert title="为什么没有 KBY 的单价？" type="info"
+          description="价格随着市场供需而定，在 IBO 中，市价由供需、保证金等因素决定，所以你可直接投入你的数字资产，我们的 Bancor 协议会帮你汇兑。" show-icon />
       <el-row>
         <el-col :span="12">
-          <h2 class="subtitle"> 买 </h2>
-          <el-button type="primary" @click="buy" :disabled="!account"> 简陋购买 </el-button>
+          <h2 class="subtitle"> 使用 EOS 买入 KBY </h2>
+          <TradeToken />
+          <!-- <el-button type="primary" @click="buy" :disabled="!account"> 简陋购买 </el-button> -->
         </el-col>
         <el-col :span="12">
-          <h2 class="subtitle"> 卖 </h2>
+          <h2 class="subtitle"> 卖出 KBY 得到 EOS </h2>
           <el-button type="danger" @click="sell" :disabled="!account"> 简陋卖出 </el-button>
         </el-col>
       </el-row>
@@ -16,19 +18,23 @@
 
 <script>
 import { Notification } from 'element-ui';
+import { TradeToken } from '../components';
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import { networks } from '../config';
 
-const network = networks.kylin;
+const network = networks.eosasia;
 const requiredFields = { accounts: [network] };
 
 export default {
   name: 'Trade',
   data: () => ({}),
+  components: {
+    TradeToken,
+  },
   methods: {
     async buy() {
       const { eos, account } = this;
-      const amountOfEOS = Number(prompt('请输入你要购少 KBY 等值的 EOS？（格式1.0000)'));
+      const amountOfEOS = Number(prompt('请输入你要购少 KBYY 等值的 EOS？（格式1.0000)'));
       const memo = 'buy';
       try {
         await eos.transfer(
@@ -63,13 +69,13 @@ export default {
     },
     async sell() {
       const { eos, account } = this;
-      const amountOfKBY = Number(prompt('请输入你出售多少个 KBY？ （格式1.0000)')).toFixed(4);
+      const amountOfKBYY = Number(prompt('请输入你出售多少个 KBYY？ （格式1.0000)')).toFixed(4);
       const memo = 'sell';
       try {
         await this.eosTokenTransfer({
           tokenContract: 'dacincubator',
           to: 'dacincubator',
-          amount: `${amountOfKBY} KBY`,
+          amount: `${amountOfKBYY} KBYY`,
           memo,
           account,
         });

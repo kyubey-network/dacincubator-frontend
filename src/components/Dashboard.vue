@@ -1,6 +1,5 @@
 <template>
     <el-card class="stat">
-      <h1 class="subtitle">状态栏</h1>
       <el-row>
         <el-col :span="6">
           <div class="scatter-stat">
@@ -39,14 +38,14 @@
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import { networks } from '../config';
 
-const network = networks.kylin;
+const network = networks.eosasia;
 const requiredFields = { accounts: [network] };
 
 export default {
   name: 'Dashboard',
   data: () => ({
     eosBalance: '0.0000 EOS',
-    kbyBalance: '0.0000 KBY',
+    kbyBalance: '0.0000 KBYY',
   }),
   created() {
     if (this.account) {
@@ -61,8 +60,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['initScatter']),
-    ...mapMutations(['setIdentity']),
+    ...mapActions(['setIdentity']),
     async requestId() {
       await this.suggestNetworkSetting();
       const identity = await this.scatter.getIdentity(requiredFields);
@@ -74,7 +72,7 @@ export default {
         .then((res) => {
           this.eosBalance = res[0];
         });
-      eos.getCurrencyBalance('dacincubator', account.name, 'KBY')
+      eos.getCurrencyBalance('dacincubator', account.name, 'KBYY')
         .then((res) => {
           this.kbyBalance = res[0];
         });

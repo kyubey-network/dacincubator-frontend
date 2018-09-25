@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 import Eos from 'eosjs';
 import { networks } from './config';
 
-const network = networks.kylin;
+const network = networks.eosasia;
 
 Vue.use(Vuex);
 
@@ -12,6 +12,10 @@ export default new Vuex.Store({
     scatter: null,
     identity: null,
     eos: null,
+    balance: {
+      EOS: '0.0000 EOS',
+      KBYY: '0.0000 KBYY',
+    },
   },
   getters: {
     account: ({ scatter }) => {
@@ -33,6 +37,9 @@ export default new Vuex.Store({
   actions: {
     initScatter({ commit }, scatter) {
       commit('setScatter', scatter);
+    },
+    setIdentity({ commit }, identity) {
+      commit('setIdentity', identity);
     },
   },
 });

@@ -13,32 +13,31 @@
         </el-footer>
     </el-container>
 
-    
+
   </div>
 </template>
 
 <script>
-import { Dashboard, Footer, Header } from "./components";
-import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
-import { networks } from "./config";
+import { Dashboard, Footer, Header } from './components';
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
+import { networks } from './config';
 
-const network = networks.kylin;
+const network = networks.eosasia;
 const requiredFields = { accounts: [network] };
 
 export default {
-  name: "app",
+  name: 'app',
   data: () => ({}),
   components: { Dashboard, CustomFooter: Footer, CustomHeader: Header },
   created() {
     // @TODO: replace with Scatter JS
-    document.addEventListener("scatterLoaded", () => {
-      console.log("Scatter Loaded");
+    document.addEventListener('scatterLoaded', () => {
+      console.log('Scatter Loaded');
       this.handleScatterLoaded();
     });
   },
   methods: {
-    ...mapActions(["initScatter"]),
-    ...mapMutations(["setIdentity"]),
+    ...mapActions(['initScatter', 'setIdentity']),
     handleScatterLoaded() {
       const { scatter } = window;
       this.initScatter(scatter);
@@ -54,19 +53,19 @@ export default {
       this.setIdentity(null);
     },
     async buy() {
-      const amountOfEOS = prompt("请输入你要购少 KBY 等值的 EOS？");
+      const amountOfEOS = prompt('请输入你要购少 KBYY 等值的 EOS？');
     },
     async suggestNetworkSetting() {
       try {
         await this.scatter.suggestNetwork(network);
       } catch (error) {
-        console.info("User canceled to suggestNetwork");
+        console.info('User canceled to suggestNetwork');
       }
-    }
+    },
   },
   computed: {
-    ...mapState(["identity", "scatter", "eos", "account"]),
-    ...mapGetters(["account"])
+    ...mapState(['identity', 'scatter', 'eos', 'account']),
+    ...mapGetters(['account']),
     // account() {
     //   return this.identity.accounts.find(({ blockchain }) => blockchain === 'eos');
     // },
@@ -74,7 +73,7 @@ export default {
     //   const { account } = this;
     //   return account ? account.name : null;
     // }
-  }
+  },
 };
 </script>
 
