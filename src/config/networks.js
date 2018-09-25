@@ -1,3 +1,4 @@
+
 // Use EOS Asia for Mainnet
 export const eosOptions = {
   eosasia: {
@@ -17,7 +18,7 @@ export const eosOptions = {
   },
 
 };
-// Use CryptoKylin for Testnet
+  // Use CryptoKylin for Testnet
 export const networks = {
   kylin: {
     protocol: 'https',

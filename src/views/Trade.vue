@@ -20,9 +20,8 @@
 import { Notification } from 'element-ui';
 import { TradeToken } from '../components';
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
-import { networks } from '../config';
+import { network } from '../config';
 
-const network = networks.eosasia;
 const requiredFields = { accounts: [network] };
 
 export default {

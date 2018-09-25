@@ -23,5 +23,6 @@ export async function getTokenPrice() {
   });
   const { supply } = rows[0];
   // @Magic Number: 10000000000 = 10^10
-  return (supply / 10000000000).toFixed(4);
+  return (
+    Number(supply.slice(0, -5)) / 10000000000).toFixed(4);
 }
