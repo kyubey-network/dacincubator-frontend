@@ -24,17 +24,16 @@
         </el-col>
         <el-col :span="6">
             <div class="balance-stat">
-              <p>账户余额</p>
+              <p>账户余额 <el-button icon="el-icon-refresh" circle @click="updateBalance" /> </p>
                 <h2 class="small-title"> {{balance.eos}} </h2>
                 <h2 class="small-title"> {{balance.kbyy}} </h2>
-                <el-button icon="el-icon-refresh" circle @click="updateBalance" />
+                
             </div>
         </el-col>
         <el-col :span="6">
               <div class="token-price-stat">
-              <p>KBYY 价格</p>
+              <p>KBYY 价格 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
                 <h2 class="small-title"> {{tokenPrice}} / KBY </h2>
-                <el-button icon="el-icon-refresh" @click="updatePrice" circle />
             </div>
         </el-col>
       </el-row>
