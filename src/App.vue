@@ -1,38 +1,44 @@
 <template>
   <div id="app">
-    <div class="header">
-      <el-badge value="Beta on Kylin" class="item">
-          <h1 class="title"> Kyubey IBO </h1>
-      </el-badge >
-      <h2 class="subtitle"> 请认准 Kyubey 官方域名以防损失 </h2>
-    </div>
-    <Dashboard />
-    <Trade />
+    <el-container>
+        <el-header>
+          <CustomHeader/>
+        </el-header>
+        <el-main>
+            <Dashboard />
+            <router-view />
+        </el-main>
+        <el-footer>
+            <CustomFooter/>
+        </el-footer>
+    </el-container>
+
+    
   </div>
 </template>
 
 <script>
-import { Dashboard, Trade } from './components';
-import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
-import { networks } from './config';
+import { Dashboard, Footer, Header } from "./components";
+import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+import { networks } from "./config";
 
 const network = networks.kylin;
 const requiredFields = { accounts: [network] };
 
 export default {
-  name: 'app',
+  name: "app",
   data: () => ({}),
-  components: { Dashboard, Trade },
+  components: { Dashboard, CustomFooter: Footer, CustomHeader: Header },
   created() {
     // @TODO: replace with Scatter JS
-    document.addEventListener('scatterLoaded', () => {
-      console.log('Scatter Loaded');
+    document.addEventListener("scatterLoaded", () => {
+      console.log("Scatter Loaded");
       this.handleScatterLoaded();
     });
   },
   methods: {
-    ...mapActions(['initScatter']),
-    ...mapMutations(['setIdentity']),
+    ...mapActions(["initScatter"]),
+    ...mapMutations(["setIdentity"]),
     handleScatterLoaded() {
       const { scatter } = window;
       this.initScatter(scatter);
@@ -48,19 +54,19 @@ export default {
       this.setIdentity(null);
     },
     async buy() {
-      const amountOfEOS = prompt('请输入你要购少 KBY 等值的 EOS？');
+      const amountOfEOS = prompt("请输入你要购少 KBY 等值的 EOS？");
     },
     async suggestNetworkSetting() {
       try {
         await this.scatter.suggestNetwork(network);
       } catch (error) {
-        console.info('User canceled to suggestNetwork');
+        console.info("User canceled to suggestNetwork");
       }
-    },
+    }
   },
   computed: {
-    ...mapState(['identity', 'scatter', 'eos', 'account']),
-    ...mapGetters(['account']),
+    ...mapState(["identity", "scatter", "eos", "account"]),
+    ...mapGetters(["account"])
     // account() {
     //   return this.identity.accounts.find(({ blockchain }) => blockchain === 'eos');
     // },
@@ -68,7 +74,7 @@ export default {
     //   const { account } = this;
     //   return account ? account.name : null;
     // }
-  },
+  }
 };
 </script>
 
