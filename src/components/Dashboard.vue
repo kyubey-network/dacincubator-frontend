@@ -33,8 +33,8 @@
         <el-col :span="6">
               <div class="token-price-stat">
               <p>KBYY 价格</p>
-                <h2 class="small-title"> {{tokenPrice}} EOS / KBY </h2>
-                <el-button icon="el-icon-refresh" circle />
+                <h2 class="small-title"> {{tokenPrice}} / KBY </h2>
+                <el-button icon="el-icon-refresh" @click="updatePrice" circle />
             </div>
         </el-col>
       </el-row>
@@ -54,7 +54,7 @@ export default {
   created() {
   },
   methods: {
-    ...mapActions(['setIdentity', 'updateBalance']),
+    ...mapActions(['setIdentity', 'updateBalance', 'updatePrice']),
     async requestId() {
       await this.suggestNetworkSetting();
       const identity = await this.scatter.getIdentity(requiredFields);

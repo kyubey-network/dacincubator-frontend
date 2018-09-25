@@ -2,9 +2,8 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import Eos from 'eosjs';
 import { getTokenPrice, getMyBalancesByContract } from './blockchain';
-import { networks } from './config';
+import { network } from './config';
 
-const network = networks.eosasia;
 
 Vue.use(Vuex);
 
@@ -17,7 +16,7 @@ export default new Vuex.Store({
       eos: '0.0000 EOS',
       kbyy: '0.0000 KBYY',
     },
-    tokenPrice: '0.0000',
+    tokenPrice: '0.0000 EOS',
   },
   getters: {
     account: ({ scatter }) => {
@@ -38,24 +37,33 @@ export default new Vuex.Store({
     setTokenPrice(state, price) {
       state.tokenPrice = `${price} EOS`;
     },
-    setBalance(state, { name, balance }) {
-      state.balance[name] = balance;
+    setBalance(state, { symbol, balance }) {
+      state.balance[symbol] = balance || `0.0000 ${symbol.toUpperCase()}`;
     },
   },
   actions: {
-    initScatter({ commit }, scatter) {
+    initScatter({ commit, dispatch }, scatter) {
       commit('setScatter', scatter);
-      getTokenPrice().then((price) => { commit('setTokenPrice', price); });
-      getMyBalancesByContract({ symbol: 'eos' })
-        .then((price) => { commit('setBalance', { name: 'eos', balance: price[0] }); });
-      getMyBalancesByContract({ symbol: 'kbyy', tokenContract: 'dacincubator' })
-        .then((price) => { commit('setBalance', { name: 'kbyy', balance: price[0] }); });
+      dispatch('updatePrice')
+      dispatch('updateBalance')
     },
-    updatePrice({ commit }) {
-      getTokenPrice().then((price) => { commit('setTokenPrice', price); });
+    async updatePrice({ commit }) {
+      const price = await getTokenPrice()
+      commit('setTokenPrice', price);
+    },
+    updateBalance({ commit }) {
+      getMyBalancesByContract({ symbol: 'eos' })
+        .then(price => { 
+          commit('setBalance', { symbol: 'eos', balance: price[0] }); 
+        });
+      getMyBalancesByContract({ symbol: 'kbyy', tokenContract: 'dacincubator' })
+        .then(price => { 
+          commit('setBalance', { symbol: 'kbyy', balance: price[0] }); 
+        });
     },
     setIdentity({ commit }, identity) {
       commit('setIdentity', identity);
+      dispatch('updateBalance');
     },
   },
 });
