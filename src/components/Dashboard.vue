@@ -25,8 +25,9 @@
         <el-col :span="6">
             <div class="balance-stat">
               <p>账户余额</p>
-                <h2 class="small-title"> {{balance.eos}} <el-button icon="el-icon-refresh" circle /></h2>
-                <h2 class="small-title"> {{balance.kbyy}} <el-button icon="el-icon-refresh" circle /></h2>
+                <h2 class="small-title"> {{balance.eos}} </h2>
+                <h2 class="small-title"> {{balance.kbyy}} </h2>
+                <el-button icon="el-icon-refresh" circle @click="updateBalance" />
             </div>
         </el-col>
         <el-col :span="6">
@@ -42,9 +43,8 @@
 
 <script>
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
-import { networks } from '../config';
+import { network } from '../config';
 
-const network = networks.eosasia;
 const requiredFields = { accounts: [network] };
 
 export default {
@@ -54,7 +54,7 @@ export default {
   created() {
   },
   methods: {
-    ...mapActions(['setIdentity']),
+    ...mapActions(['setIdentity', 'updateBalance']),
     async requestId() {
       await this.suggestNetworkSetting();
       const identity = await this.scatter.getIdentity(requiredFields);
