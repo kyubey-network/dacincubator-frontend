@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-deploy": "yarn run build && surge --project ./dist --domain dacos-demo.surge.sh",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
