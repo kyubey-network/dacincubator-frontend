@@ -14,7 +14,7 @@ export default new Vuex.Store({
     eos: null,
     balance: {
       eos: '0.0000 EOS',
-      kbyy: '0.0000 KBY',
+      kby: '0.0000 KBY',
     },
     tokenPrice: '0.0000 EOS',
   },
@@ -55,9 +55,9 @@ export default new Vuex.Store({
         .then((price) => {
           commit('setBalance', { symbol: 'eos', balance: price[0] });
         });
-      getMyBalancesByContract({ symbol: 'kbyy', tokenContract: 'dacincubator' })
+      getMyBalancesByContract({ symbol: 'kby', tokenContract: 'dacincubator' })
         .then((price) => {
-          commit('setBalance', { symbol: 'kbyy', balance: price[0] });
+          commit('setBalance', { symbol: 'kby', balance: price[0] });
         });
     },
     setIdentity({ commit, dispatch }, identity) {
