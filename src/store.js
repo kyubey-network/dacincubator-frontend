@@ -45,7 +45,6 @@ export default new Vuex.Store({
     initScatter({ commit, dispatch }, scatter) {
       commit('setScatter', scatter);
       dispatch('updatePrice');
-      dispatch('updateBalance');
     },
     async updatePrice({ commit }) {
       const price = await getTokenPrice();
@@ -61,7 +60,7 @@ export default new Vuex.Store({
           commit('setBalance', { symbol: 'kbyy', balance: price[0] });
         });
     },
-    setIdentity({ commit }, identity) {
+    setIdentity({ commit, dispatch }, identity) {
       commit('setIdentity', identity);
       dispatch('updateBalance');
     },
