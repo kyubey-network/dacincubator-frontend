@@ -44,24 +44,8 @@ export default {
     countdown: VueCountdown,
   },
   data: () => ({
-    global: {},
-    reserveBalance: '0.0000 EOS',
-    reservePeoples: 0,
-    eosLoaded: false,
   }),
-  watch: {
-    eos(val) {
-      if (val && !this.eosLoaded) {
-        this.eosLoaded = true;
-        this.fetchCrowdSaleStatus();
-      }
-    },
-  },
   created() {
-    if (this.eos) {
-      this.eosLoaded = true;
-      this.fetchCrowdSaleStatus();
-    }
   },
   methods: {
     ...mapActions(['setIdentity', 'updateBalance', 'updatePrice']),
@@ -69,15 +53,6 @@ export default {
       await this.suggestNetworkSetting();
       const identity = await this.scatter.getIdentity(requiredFields);
       this.setIdentity(identity);
-    },
-    fetchCrowdSaleStatus() {
-      getContractGlobal().then((res) => {
-        this.global = res;
-        this.reserveBalance = res.reserve;
-      });
-      getCrowdSaleOrders().then((res) => {
-        this.reservePeoples = res.length;
-      });
     },
     async forgetId() {
       await this.scatter.forgetIdentity();
@@ -94,13 +69,6 @@ export default {
   computed: {
     ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'mbalance', 'tokenPrice', 'supply']),
     ...mapGetters(['account']),
-    startTime() {
-      return this.global.claim_time * 1000;
-    },
-    timeLeft() {
-      const crowdSaleInterval = 1000 * 60 * 60 * 6;
-      return (this.startTime + crowdSaleInterval) - (new Date().getTime());
-    },
   },
 };
 </script>
