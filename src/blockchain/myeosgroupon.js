@@ -1,7 +1,7 @@
-import { currentState } from './store';
+import { eos } from './store';
 
 export async function getContractGlobal() {
-  const { rows } = await currentState().eos.getTableRows({
+  const { rows } = await eos().getTableRows({
     json: 'true',
     code: 'myeosgroupon',
     scope: 'myeosgroupon',
@@ -11,7 +11,7 @@ export async function getContractGlobal() {
   return rows;
 }
 export async function getCrowdSaleOrders() {
-  const { rows } = await currentState().eos.getTableRows({
+  const { rows } = await eos().getTableRows({
     json: 'true',
     code: 'myeosgroupon',
     scope: 'myeosgroupon',

@@ -1,7 +1,7 @@
-import { currentGetters, currentState } from './store';
+import { currentGetters, eos } from './store';
 
 export function getBalancesByContract({ tokenContract = 'eosio.token', accountName, symbol }) {
-  return currentState().eos.getCurrencyBalance(tokenContract, accountName, symbol);
+  return eos().getCurrencyBalance(tokenContract, accountName, symbol);
 }
 
 export function getMyBalancesByContract({ tokenContract = 'eosio.token', symbol }) {
@@ -10,7 +10,7 @@ export function getMyBalancesByContract({ tokenContract = 'eosio.token', symbol 
 }
 
 export async function getTokenPrice() {
-  const { rows } = await currentState().eos.getTableRows({
+  const { rows } = await eos().getTableRows({
     json: 'true',
     code: 'dacincubator',
     scope: 'dacincubator',
@@ -24,7 +24,7 @@ export async function getTokenPrice() {
 }
 
 export async function getMBalance() {
-  const { rows } = await currentState().eos.getTableRows({
+  const { rows } = await eos().getTableRows({
     json: 'true',
     code: 'dacincubator',
     scope: 'dacincubator',
@@ -37,7 +37,7 @@ export async function getMBalance() {
 }
 
 export async function getSupply() {
-  const { rows } = await currentState().eos.getTableRows({
+  const { rows } = await eos().getTableRows({
     json: 'true',
     code: 'dacincubator',
     scope: 'dacincubator',
@@ -51,7 +51,7 @@ export async function getSupply() {
 
 export async function getActions() {
   // async function below return `getActionsResult` (Check EOSJS api for detail)
-  const { actions } = await currentState().eos.getActions('myeosgroupon', -1, -50);
+  const { actions } = await eos().getActions('myeosgroupon', -1, -50);
   // Return actions for now
   return actions;
 }
