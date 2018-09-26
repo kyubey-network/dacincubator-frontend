@@ -73,12 +73,11 @@ export default {
     async buy() {
       const { eos, account } = this;
       const amountOfEOS = this.orderForm.amount;
-      
-      const memo = '';
+      const memo = 'buy';
       try {
         await eos.transfer(
           account.name,
-          'myeosgroupon',
+          'dacincubator',
           `${amountOfEOS.toFixed(4)} EOS`,
           `${memo}`,
           {

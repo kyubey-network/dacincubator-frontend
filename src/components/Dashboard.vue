@@ -36,6 +36,16 @@
                 <h2 class="small-title"> {{tokenPrice}} / KBY </h2>
             </div>
         </el-col>
+        <el-col :span="6">
+              <div class="KBY-stat">
+              <p>Market Supply</p>
+              <h2 class="small-title">{{supply}} </h2>
+              <p>Market Balance</p>
+              <h2 class="small-title">{{mbalance}} </h2>
+              
+            </div>
+        </el-col>
+
       </el-row>
     </el-card>
 </template>
@@ -72,7 +82,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'tokenPrice']),
+    ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'mbalance', 'tokenPrice','supply']),
     ...mapGetters(['account']),
   },
 };
