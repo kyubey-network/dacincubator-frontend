@@ -2,11 +2,12 @@
     <el-card class="stat">
       <el-alert title="为什么没有 KBY 的单价？" type="info" style="text-align: left;"
           description="价格随着市场供需而定，在 IBO 中，市价由供需、保证金等因素决定，所以你可直接投入你的数字资产，我们的 Bancor 协议会帮你汇兑。" show-icon />
+      <el-alert title="好消息！好消息！" type="warning" style="text-align: left;"
+          description="我们开启了 IBO 团购通道。通过团购合约进行 IBO 有优惠价哦，名额与份额有限，让我们一起“拼”吧。（拼团购买的 KBY 代币需要等拼团结束后才发放）" show-icon />
       <el-row>
         <el-col :span="12">
-          <h2 class="subtitle"> 使用 EOS 买入 KBY </h2>
-          <TradeToken />
-          <!-- <el-button type="primary" @click="buy" :disabled="!account"> 简陋购买 </el-button> -->
+          <h2 class="subtitle"> 使用 EOS <del>买入</del> 团购 KBY </h2>
+          <CrowdSale />
         </el-col>
         <el-col :span="12">
           <h2 class="subtitle"> 卖出 KBY 得到 EOS </h2>
@@ -18,7 +19,7 @@
 
 <script>
 import { Notification } from 'element-ui';
-import { TradeToken } from '../components';
+import { CrowdSale } from '../components';
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import { network } from '../config';
 
@@ -28,7 +29,7 @@ export default {
   name: 'Trade',
   data: () => ({}),
   components: {
-    TradeToken,
+    CrowdSale,
   },
   methods: {
     async buy() {

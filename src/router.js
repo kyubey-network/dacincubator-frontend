@@ -33,7 +33,7 @@ export default new Router({
     {
       path: '/dev',
       name: 'dev-trade-board',
-      component: () => import(/* webpackChunkName: "about" */ './components/TradeToken.vue'),
+      component: () => import(/* webpackChunkName: "about" */ './components/TradeTokenOld.vue'),
     },
   ],
 });

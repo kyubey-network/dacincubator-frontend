@@ -34,7 +34,7 @@ import { Notification } from 'element-ui';
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {
-  name: 'TradeComponent',
+  name: 'CrowdSaleComponent',
   props: {
     actionType: {
       type: String,
