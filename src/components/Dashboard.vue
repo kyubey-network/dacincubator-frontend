@@ -20,7 +20,7 @@
                 </el-button>
               </div>
             </div>
-          
+
        </el-col>
         <el-col :span="4">
           <div class="timing" v-if="global.claim_time">
@@ -82,13 +82,13 @@ const requiredFields = { accounts: [network] };
 export default {
   name: 'Dashboard',
   components: {
-   countdown: VueCountdown
+    countdown: VueCountdown,
   },
   data: () => ({
     global: {},
     reserveBalance: '0.0000 EOS',
     reservePeoples: 0,
-    eosLoaded: false
+    eosLoaded: false,
   }),
   watch: {
     eos(val) {
@@ -140,8 +140,8 @@ export default {
     },
     timeLeft() {
       const crowdSaleInterval = 1000 * 60 * 60 * 6;
-      return (this.startTime + crowdSaleInterval) - (new Date().getTime())
-    }
+      return (this.startTime + crowdSaleInterval) - (new Date().getTime());
+    },
   },
 };
 </script>
