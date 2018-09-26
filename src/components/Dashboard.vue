@@ -33,7 +33,8 @@
         <el-col :span="4">
               <div class="token-price-stat">
               <p>KBY 价格 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
-                <h2 class="small-title"> {{tokenPrice}} / KBY </h2>
+                <h2 class="small-title"> {{tokenPrice}} </h2>
+                <h3> / KBY</h3>
             </div>
         </el-col>
         <el-col :span="4">
@@ -59,6 +60,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
+import { getContractGlobal, getCrowdSaleOrders } from "../blockchain";
 import { network } from '../config';
 
 const requiredFields = { accounts: [network] };
@@ -68,8 +70,20 @@ export default {
   data: () => ({
     reserveBalance: '0.0000 EOS',
     reservePeoples: 0,
+    eosLoaded: false
   }),
+  watch: {
+    eos: function(val) {
+      if (val && !this.eosLoaded) {
+        this.eosLoaded = true
+        this.fetchCrowdSaleStatus()
+      }
+    }
+  },
   created() {
+    if (this.eos) {
+      this.fetchCrowdSaleStatus()
+    }
   },
   methods: {
     ...mapActions(['setIdentity', 'updateBalance', 'updatePrice']),
@@ -77,6 +91,14 @@ export default {
       await this.suggestNetworkSetting();
       const identity = await this.scatter.getIdentity(requiredFields);
       this.setIdentity(identity);
+    },
+    fetchCrowdSaleStatus() {
+      getContractGlobal().then(res => {
+          this.reserveBalance = res.reserve
+        })
+        getCrowdSaleOrders().then(res => {
+          this.reservePeoples = res.length
+        })
     },
     async forgetId() {
       await this.scatter.forgetIdentity();
