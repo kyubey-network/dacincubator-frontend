@@ -66,7 +66,7 @@ const requiredFields = { accounts: [network] };
 export default {
   name: 'Dashboard',
   data: () => ({
-    reserveBalance: "0.0000 EOS",
+    reserveBalance: '0.0000 EOS',
     reservePeoples: 0,
   }),
   created() {

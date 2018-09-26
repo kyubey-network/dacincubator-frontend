@@ -1,4 +1,4 @@
-import { currentGetters, currentState } from "./store";
+import { currentGetters, currentState } from './store';
 
 export function getBalancesByContract({ tokenContract = 'eosio.token', accountName, symbol }) {
   return currentState().eos.getCurrencyBalance(tokenContract, accountName, symbol);
@@ -56,4 +56,4 @@ export async function getActions() {
   return actions;
 }
 
-export { getContractGlobal, getCrowdSaleOrders } from './myeosgroupon'
+export { getContractGlobal, getCrowdSaleOrders } from './myeosgroupon';
