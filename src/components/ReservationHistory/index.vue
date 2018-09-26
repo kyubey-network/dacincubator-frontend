@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 import { compose } from 'ramda';
 import { receiptFilter, getTheReceipt, convertTimestamp } from './helper';
 import { getActions } from '../../blockchain';
@@ -31,37 +31,37 @@ import { getActions } from '../../blockchain';
 export default {
   name: 'ActionsList',
   watch: {
-    eos: function(val) {
+    eos(val) {
       if (val && !this.eosLoaded) {
-        this.eosLoaded = true
-        this.fetchActions()
+        this.eosLoaded = true;
+        this.fetchActions();
       }
-    }
+    },
   },
 
   async created() {
     if (eos) {
-        this.eosLoaded = true;
-        this.fetchActions();
+      this.eosLoaded = true;
+      this.fetchActions();
     }
   },
   data: () => ({
     actions: [],
-    eosLoaded: false
+    eosLoaded: false,
   }),
   methods: {
-      fetchActions() {
-          const actions = await getActions();
-            // Functional style babe!
-            this.actions = compose(
-            convertTimestamp,
-            getTheReceipt,
-            receiptFilter,
-            )(actions);
-      }
+    async fetchActions() {
+      const actions = await getActions();
+      // Functional style babe!
+      this.actions = compose(
+        convertTimestamp,
+        getTheReceipt,
+        receiptFilter,
+      )(actions);
+    },
   },
   computed: {
-      ...mapState(['eos'])
-  }
+    ...mapState(['eos']),
+  },
 };
 </script>

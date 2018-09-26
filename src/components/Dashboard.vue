@@ -60,7 +60,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
-import { getContractGlobal, getCrowdSaleOrders } from "../blockchain";
+import { getContractGlobal, getCrowdSaleOrders } from '../blockchain';
 import { network } from '../config';
 
 const requiredFields = { accounts: [network] };
@@ -70,20 +70,20 @@ export default {
   data: () => ({
     reserveBalance: '0.0000 EOS',
     reservePeoples: 0,
-    eosLoaded: false
+    eosLoaded: false,
   }),
   watch: {
-    eos: function(val) {
+    eos(val) {
       if (val && !this.eosLoaded) {
-        this.eosLoaded = true
-        this.fetchCrowdSaleStatus()
+        this.eosLoaded = true;
+        this.fetchCrowdSaleStatus();
       }
-    }
+    },
   },
   created() {
     if (this.eos) {
       this.eosLoaded = true;
-      this.fetchCrowdSaleStatus()
+      this.fetchCrowdSaleStatus();
     }
   },
   methods: {
@@ -94,12 +94,12 @@ export default {
       this.setIdentity(identity);
     },
     fetchCrowdSaleStatus() {
-      getContractGlobal().then(res => {
-          this.reserveBalance = res.reserve
-        })
-        getCrowdSaleOrders().then(res => {
-          this.reservePeoples = res.length
-        })
+      getContractGlobal().then((res) => {
+        this.reserveBalance = res.reserve;
+      });
+      getCrowdSaleOrders().then((res) => {
+        this.reservePeoples = res.length;
+      });
     },
     async forgetId() {
       await this.scatter.forgetIdentity();
