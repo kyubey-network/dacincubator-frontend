@@ -1,31 +1,38 @@
 <template>
     <el-card class="stat" style="text-align: left;">
       <el-row :gutter="10">
-        <el-col :span="12">
-          <div class="scatter-stat">
-            <p>Scatter 状态</p>
-            <h2 class="small-title">{{ scatter ? "已加载" : "未发现" }}</h2>
-          </div>
-            <div class="scatter-id-stat">
-              <p>你当前的账户</p>
-              <div class="logined" v-if="account">
-                <h2 class="small-title">{{account.name}}</h2>
-                <div class="balance-stat">
-                  <p>账户余额 <el-button icon="el-icon-refresh" circle @click="updateBalance" /> </p>
-                    <h2 class="small-title"> {{balance.eos}} </h2>
-                    <h2 class="small-title"> {{balance.kby}} </h2>
-                </div>
-                <el-button type="danger"  @click="forgetId">退出身份</el-button>
-              </div>
-              <div class="not-login" v-else>
-                <h2 class="small-title"> 未登录 </h2>
-                <el-button type="primary" :disabled="!scatter" @click="requestId">
-                  通过 Scatter 登录
-                </el-button>
-              </div>
+        <el-col :span="8">
+            <div class="timing" v-if="global.claim_time">
+                <p>团购剩余时间</p>
+                <countdown :time="timeLeft">
+                  <template slot-scope="props">
+                    <h2 class="small-title">
+                      {{ props.hours }}:{{ props.minutes }}:{{ props.seconds }}
+                    </h2>
+                    </template>
+                </countdown>
             </div>
-       </el-col>
-        
+              <div class="token-price-stat">
+              <p>KBY 目前单价 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
+                <h2 class="small-title"> {{tokenPrice}} </h2>
+            </div>
+        </el-col>
+        <el-col :span="8">
+              <div class="KBY-stat">
+              <p>Market Supply</p>
+              <h2 class="small-title">{{supply}} </h2>
+              <p>Market Balance</p>
+              <h2 class="small-title">{{mbalance}} </h2>
+            </div>
+        </el-col>
+        <el-col :span="8">
+            <div class="reserve-stat">
+              <p>本轮预约金额</p>
+              <h2 class="small-title"> {{reserveBalance}} </h2>
+              <p>本轮预约人数</p>
+              <h2 class="small-title"> {{reservePeoples}} </h2>
+            </div>
+        </el-col>
       </el-row>
     </el-card>
 </template>

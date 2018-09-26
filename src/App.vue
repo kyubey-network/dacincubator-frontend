@@ -6,10 +6,11 @@
         </el-header>
         <el-main>
           <el-row :gutter="10">
-            <el-col :span="8">
+            <el-col :span="6">
               <Dashboard />
             </el-col>
-            <el-col :span="16">
+            <el-col :span="18">
+              <CrowdSaleStat/>
               <router-view />
             </el-col>
           </el-row>
@@ -25,7 +26,7 @@
 </template>
 
 <script>
-import { Dashboard, Footer, Header } from './components';
+import { Dashboard, CrowdSaleStat, Footer, Header } from './components';
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import { network } from './config';
 
@@ -34,7 +35,7 @@ const requiredFields = { accounts: [network] };
 export default {
   name: 'app',
   data: () => ({}),
-  components: { Dashboard, CustomFooter: Footer, CustomHeader: Header },
+  components: { Dashboard, CustomFooter: Footer, CustomHeader: Header, CrowdSaleStat },
   created() {
     // @TODO: replace with Scatter JS
     document.addEventListener('scatterLoaded', () => {
