@@ -55,7 +55,7 @@
                 <p>团购剩余时间</p>
                 <h2 class="small-title"> {{ readableTimeLeft }} </h2>
               </div>
-              
+
             </div>
         </el-col>
 
@@ -77,7 +77,7 @@ export default {
     reserveBalance: '0.0000 EOS',
     reservePeoples: 0,
     eosLoaded: false,
-    timeLeft: 0
+    timeLeft: 0,
   }),
   watch: {
     eos(val) {
@@ -94,8 +94,8 @@ export default {
     }
 
     setInterval(() => {
-      this.updateCrowdSaleTimeleft()
-    }, 1000)
+      this.updateCrowdSaleTimeleft();
+    }, 1000);
   },
   methods: {
     ...mapActions(['setIdentity', 'updateBalance', 'updatePrice']),
@@ -106,7 +106,7 @@ export default {
     },
     fetchCrowdSaleStatus() {
       getContractGlobal().then((res) => {
-        this.global = res
+        this.global = res;
         this.reserveBalance = res.reserve;
       });
       getCrowdSaleOrders().then((res) => {
@@ -126,33 +126,31 @@ export default {
     },
     updateCrowdSaleTimeleft() {
       const crowdSaleInterval = (21600 * 1000);
-      this.timeLeft = (this.startTime + crowdSaleInterval) - (new Date().getTime()) ;
-    }
+      this.timeLeft = (this.startTime + crowdSaleInterval) - (new Date().getTime());
+    },
   },
   computed: {
     ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'mbalance', 'tokenPrice', 'supply']),
     ...mapGetters(['account']),
     startTime() {
-      return this.global.claim_time * 1000
+      return this.global.claim_time * 1000;
     },
     readableTimeLeft() {
       // JS timestamp use ms, not second
       const MIN = 1000 * 60;
       const HOUR = MIN * 60;
       if (this.timeLeft > HOUR) {
-        let h = this.timeLeft / HOUR
-        h = Math.floor(h)
-        let min = (this.timeLeft % HOUR) / MIN
-        min = Math.floor(min)
-        return `${h}小时 ${min}分钟`
+        let h = this.timeLeft / HOUR;
+        h = Math.floor(h);
+        let min = (this.timeLeft % HOUR) / MIN;
+        min = Math.floor(min);
+        return `${h}小时 ${min}分钟`;
       } else if (this.timeLeft > MIN) {
-        let remain = this.timeLeft / MIN
-        return `${remain} 分钟`
-      } else {
-        return `${this.timeLeft} 秒`
+        const remain = this.timeLeft / MIN;
+        return `${remain} 分钟`;
       }
-      
-    }
+      return `${this.timeLeft} 秒`;
+    },
   },
 };
 </script>
