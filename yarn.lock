@@ -927,6 +927,10 @@
     "@webassemblyjs/wast-parser" "1.7.6"
     "@xtuc/long" "4.2.1"
 
+"@xkeshi/vue-countdown@^1.0.1":
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/@xkeshi/vue-countdown/download/@xkeshi/vue-countdown-1.0.1.tgz#cce62c1d62d55e272e2e73af9da015548cdeaa74"
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/@xtuc/ieee754/download/@xtuc/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
