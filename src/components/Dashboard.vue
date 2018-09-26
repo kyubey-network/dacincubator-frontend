@@ -36,6 +36,13 @@
                 <h2 class="small-title"> {{tokenPrice}} / KBY </h2>
             </div>
         </el-col>
+        <el-col :span="6">
+              <div class="token-price-stat">
+              <p>KBY 狀態 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
+                <h2 class="small-title"> {{supply}} KBY </h2>
+            </div>
+        </el-col>
+
       </el-row>
     </el-card>
 </template>
@@ -72,7 +79,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'tokenPrice']),
+    ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'tokenPrice','supply']),
     ...mapGetters(['account']),
   },
 };

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Eos from 'eosjs';
-import { getTokenPrice, getMyBalancesByContract } from './blockchain';
+import { getTokenPrice, getMyBalancesByContract, getSupply } from './blockchain';
 import { network } from './config';
 
 
