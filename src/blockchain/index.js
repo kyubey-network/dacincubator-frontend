@@ -52,3 +52,10 @@ export async function getSupply() {
   // @Magic Number: 10000000000 = 10^10
   return Number(supply.slice(0, -5));
 }
+
+export async function getActions() {
+  // async function below return `getActionsResult` (Check EOSJS api for detail)
+  const { actions } = await currentState().eos.getActions('myeosgroupon', -1, -50);
+  // Return actions for now
+  return actions;
+}
