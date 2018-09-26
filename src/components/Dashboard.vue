@@ -37,9 +37,12 @@
             </div>
         </el-col>
         <el-col :span="6">
-              <div class="token-price-stat">
-              <p>KBY 狀態 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
-                <h2 class="small-title"> {{supply}} KBY </h2>
+              <div class="KBY-stat">
+              <p>Market Supply{{xxx}}</p>
+              <h2 class="small-title">{{supply}} </h2>
+              <p>Market Balance <el-button icon="el-icon-refresh" @click="updateMBalance" circle /> </p>
+              <h2 class="small-title">{{mbalance}} </h2>
+              
             </div>
         </el-col>
 
@@ -79,7 +82,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'tokenPrice','supply']),
+    ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'mbalance', 'tokenPrice','supply']),
     ...mapGetters(['account']),
   },
 };

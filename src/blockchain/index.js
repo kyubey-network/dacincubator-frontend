@@ -27,6 +27,19 @@ export async function getTokenPrice() {
     Number(supply.slice(0, -5)) / 10000000000).toFixed(4);
 }
 
+export async function getMBalance() {
+  const { rows } = await currentState().eos.getTableRows({
+    json: 'true',
+    code: 'dacincubator',
+    scope: 'dacincubator',
+    limit: 50,
+    table: 'market',
+  });
+  const { mbalance } = rows[1];
+  // @Magic Number: 10000000000 = 10^10
+  return Number(mbalance.slice(0, -5)) ;
+}
+
 export async function getSupply() {
   const { rows } = await currentState().eos.getTableRows({
     json: 'true',
@@ -36,5 +49,6 @@ export async function getSupply() {
     table: 'market',
   });
   const { supply } = rows[0];
-  return supply ;
+  // @Magic Number: 10000000000 = 10^10
+  return Number(supply.slice(0, -5)) ;
 }
