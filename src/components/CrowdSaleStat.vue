@@ -6,9 +6,9 @@
                 <p>团购剩余时间</p>
                 <countdown :time="timeLeft">
                   <template slot-scope="props">
-                    <h2 class="small-title">
+                    <h1 class="small-title">
                       {{ props.hours }}:{{ props.minutes }}:{{ props.seconds }}
-                    </h2>
+                    </h1>
                     </template>
                 </countdown>
             </div>
@@ -46,7 +46,7 @@ import { network } from '../config';
 const requiredFields = { accounts: [network] };
 
 export default {
-  name: 'Dashboard',
+  name: 'CrowdSaleStat',
   components: {
     countdown: VueCountdown,
   },
@@ -71,12 +71,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['setIdentity', 'updateBalance', 'updatePrice']),
-    async requestId() {
-      await this.suggestNetworkSetting();
-      const identity = await this.scatter.getIdentity(requiredFields);
-      this.setIdentity(identity);
-    },
+    ...mapActions(['updatePrice']),
     fetchCrowdSaleStatus() {
       getContractGlobal().then((res) => {
         this.global = res;
@@ -86,20 +81,9 @@ export default {
         this.reservePeoples = res.length;
       });
     },
-    async forgetId() {
-      await this.scatter.forgetIdentity();
-      this.setIdentity(null);
-    },
-    async suggestNetworkSetting() {
-      try {
-        await this.scatter.suggestNetwork(network);
-      } catch (error) {
-        console.info('User canceled to suggestNetwork');
-      }
-    },
   },
   computed: {
-    ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'mbalance', 'tokenPrice', 'supply']),
+    ...mapState([ 'eos', 'mbalance', 'tokenPrice', 'supply']),
     ...mapGetters(['account']),
     startTime() {
       return this.global.claim_time * 1000;
