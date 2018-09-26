@@ -43,8 +43,8 @@ export default new Vuex.Store({
       state.supply = `${supply} KBY`;
     },
     setMBalance(state, mbalance) {
-      state.mbalance = `${mbalance} EOS` ;
-    },    
+      state.mbalance = `${mbalance} EOS`;
+    },
     setBalance(state, { symbol, balance }) {
       state.balance[symbol] = balance || `0.0000 ${symbol.toUpperCase()}`;
     },
@@ -65,13 +65,13 @@ export default new Vuex.Store({
       commit('setBalance', Balance);
     },
     async updateSupply({ commit }) {
-        const supply = await getSupply();
-        commit('setSupply', supply);
+      const supply = await getSupply();
+      commit('setSupply', supply);
     },
     async updateMBalance({ commit }) {
       const mbalance = await getMBalance();
       commit('setMBalance', mbalance);
-  },
+    },
     updateBalance({ commit }) {
       getMyBalancesByContract({ symbol: 'eos' })
         .then((price) => {

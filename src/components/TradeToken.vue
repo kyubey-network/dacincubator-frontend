@@ -73,7 +73,7 @@ export default {
     async buy() {
       const { eos, account } = this;
       const amountOfEOS = this.orderForm.amount;
-      
+
       const memo = '';
       try {
         await eos.transfer(

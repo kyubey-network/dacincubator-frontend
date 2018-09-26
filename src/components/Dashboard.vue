@@ -42,7 +42,7 @@
               <h2 class="small-title">{{supply}} </h2>
               <p>Market Balance</p>
               <h2 class="small-title">{{mbalance}} </h2>
-              
+
             </div>
         </el-col>
 
@@ -82,7 +82,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'mbalance', 'tokenPrice','supply']),
+    ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'mbalance', 'tokenPrice', 'supply']),
     ...mapGetters(['account']),
   },
 };
