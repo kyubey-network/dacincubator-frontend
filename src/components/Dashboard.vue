@@ -38,9 +38,9 @@
         </el-col>
         <el-col :span="6">
               <div class="KBY-stat">
-              <p>Market Supply{{xxx}}</p>
+              <p>Market Supply</p>
               <h2 class="small-title">{{supply}} </h2>
-              <p>Market Balance <el-button icon="el-icon-refresh" @click="updateMBalance" circle /> </p>
+              <p>Market Balance</p>
               <h2 class="small-title">{{mbalance}} </h2>
               
             </div>

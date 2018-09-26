@@ -35,9 +35,9 @@ export async function getMBalance() {
     limit: 50,
     table: 'market',
   });
-  const { mbalance } = rows[1];
+  const { balance } = rows[0];
   // @Magic Number: 10000000000 = 10^10
-  return Number(mbalance.slice(0, -5)) ;
+  return Number(balance.slice(0, -5)) ;
 }
 
 export async function getSupply() {
