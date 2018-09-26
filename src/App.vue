@@ -35,7 +35,9 @@ const requiredFields = { accounts: [network] };
 export default {
   name: 'app',
   data: () => ({}),
-  components: { Dashboard, CustomFooter: Footer, CustomHeader: Header, CrowdSaleStat },
+  components: {
+    Dashboard, CustomFooter: Footer, CustomHeader: Header, CrowdSaleStat,
+  },
   created() {
     // @TODO: replace with Scatter JS
     document.addEventListener('scatterLoaded', () => {

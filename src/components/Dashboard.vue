@@ -25,7 +25,7 @@
               </div>
             </div>
        </el-col>
-        
+
       </el-row>
     </el-card>
 </template>
