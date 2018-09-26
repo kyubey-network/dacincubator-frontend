@@ -82,6 +82,7 @@ export default {
   },
   created() {
     if (this.eos) {
+      this.eosLoaded = true;
       this.fetchCrowdSaleStatus()
     }
   },
