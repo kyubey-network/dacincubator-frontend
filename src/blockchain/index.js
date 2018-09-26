@@ -1,8 +1,4 @@
-import store from '../store';
-
-// trick: 延迟求值，因为 webpack 会直接处理初始为 undefined 的 `store`， currentState 此处可以绕过
-const currentState = () => store.state;
-const currentGetters = () => store.getters;
+import { currentGetters, currentState } from "./store";
 
 export function getBalancesByContract({ tokenContract = 'eosio.token', accountName, symbol }) {
   return currentState().eos.getCurrencyBalance(tokenContract, accountName, symbol);
@@ -59,3 +55,5 @@ export async function getActions() {
   // Return actions for now
   return actions;
 }
+
+export { getContractGlobal, getCrowdSaleOrders } from './myeosgroupon'
