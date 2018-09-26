@@ -30,18 +30,26 @@
                 <h2 class="small-title"> {{balance.kby}} </h2>
             </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
               <div class="token-price-stat">
               <p>KBY 价格 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
                 <h2 class="small-title"> {{tokenPrice}} / KBY </h2>
             </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
               <div class="KBY-stat">
               <p>Market Supply</p>
               <h2 class="small-title">{{supply}} </h2>
               <p>Market Balance</p>
               <h2 class="small-title">{{mbalance}} </h2>
+            </div>
+        </el-col>
+        <el-col :span="4">
+            <div class="reserve-stat">
+              <p>预约金额</p>
+              <h2 class="small-title"> {{reserveBalance}} </h2>
+              <p>预约人数</p>
+              <h2 class="small-title"> {{reservePeoples}} </h2>
             </div>
         </el-col>
 
@@ -58,6 +66,8 @@ const requiredFields = { accounts: [network] };
 export default {
   name: 'Dashboard',
   data: () => ({
+    reserveBalance: "0.0000 EOS",
+    reservePeoples: 0,
   }),
   created() {
   },
