@@ -5,8 +5,15 @@
           <CustomHeader/>
         </el-header>
         <el-main>
-            <Dashboard />
-            <router-view />
+          <el-row :gutter="10">
+            <el-col :span="8">
+              <Dashboard />
+            </el-col>
+            <el-col :span="16">
+              <router-view />
+            </el-col>
+          </el-row>
+
         </el-main>
         <el-footer>
             <CustomFooter/>
