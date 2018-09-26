@@ -3,14 +3,14 @@ import { networks } from './networks';
 // For testnet
 // export const network = networks.kylin;
 // For EosAsia
-export const network = networks.eosasia
+export const network = networks.eosasia;
 
 export const tokenProfile = {
-    code: 'dacincubator',
-    symbol: 'KBY'
-}
+  code: 'dacincubator',
+  symbol: 'KBY',
+};
 
 export const weNeedFor = {
-    code: 'eosio.token',
-    symbol: 'EOS'
-}
+  code: 'eosio.token',
+  symbol: 'EOS',
+};
