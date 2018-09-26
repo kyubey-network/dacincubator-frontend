@@ -6,8 +6,6 @@
             <p>Scatter 状态</p>
             <h2 class="small-title">{{ scatter ? "已加载" : "未发现" }}</h2>
           </div>
-       </el-col>
-        <el-col :span="4">
             <div class="scatter-id-stat">
               <p>你当前的账户</p>
               <div class="logined" v-if="account">
@@ -22,6 +20,19 @@
                 </el-button>
               </div>
             </div>
+          
+       </el-col>
+        <el-col :span="4">
+          <div class="timing" v-if="global.claim_time">
+                <p>团购剩余时间</p>
+                <countdown :time="timeLeft">
+                  <template slot-scope="props">
+                    <h2 class="small-title">
+                      {{ props.hours }}:{{ props.minutes }}:{{ props.seconds }}
+                    </h2>
+                    </template>
+                </countdown>
+          </div>
         </el-col>
         <el-col :span="4">
             <div class="balance-stat">
@@ -51,10 +62,7 @@
               <h2 class="small-title"> {{reserveBalance}} </h2>
               <p>预约人数</p>
               <h2 class="small-title"> {{reservePeoples}} </h2>
-              <div class="timing" v-if="global.claim_time">
-                <p>团购剩余时间</p>
-                <h2 class="small-title"> {{ readableTimeLeft }} </h2>
-              </div>
+
 
             </div>
         </el-col>
@@ -65,6 +73,7 @@
 
 <script>
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
+import VueCountdown from '@xkeshi/vue-countdown';
 import { getContractGlobal, getCrowdSaleOrders } from '../blockchain';
 import { network } from '../config';
 
@@ -72,12 +81,14 @@ const requiredFields = { accounts: [network] };
 
 export default {
   name: 'Dashboard',
+  components: {
+   countdown: VueCountdown
+  },
   data: () => ({
     global: {},
     reserveBalance: '0.0000 EOS',
     reservePeoples: 0,
-    eosLoaded: false,
-    timeLeft: 0,
+    eosLoaded: false
   }),
   watch: {
     eos(val) {
@@ -92,10 +103,6 @@ export default {
       this.eosLoaded = true;
       this.fetchCrowdSaleStatus();
     }
-
-    setInterval(() => {
-      this.updateCrowdSaleTimeleft();
-    }, 1000);
   },
   methods: {
     ...mapActions(['setIdentity', 'updateBalance', 'updatePrice']),
@@ -124,10 +131,6 @@ export default {
         console.info('User canceled to suggestNetwork');
       }
     },
-    updateCrowdSaleTimeleft() {
-      const crowdSaleInterval = (21600 * 1000);
-      this.timeLeft = (this.startTime + crowdSaleInterval) - (new Date().getTime());
-    },
   },
   computed: {
     ...mapState(['identity', 'scatter', 'eos', 'account', 'balance', 'mbalance', 'tokenPrice', 'supply']),
@@ -135,22 +138,10 @@ export default {
     startTime() {
       return this.global.claim_time * 1000;
     },
-    readableTimeLeft() {
-      // JS timestamp use ms, not second
-      const MIN = 1000 * 60;
-      const HOUR = MIN * 60;
-      if (this.timeLeft > HOUR) {
-        let h = this.timeLeft / HOUR;
-        h = Math.floor(h);
-        let min = (this.timeLeft % HOUR) / MIN;
-        min = Math.floor(min);
-        return `${h}小时 ${min}分钟`;
-      } else if (this.timeLeft > MIN) {
-        const remain = this.timeLeft / MIN;
-        return `${remain} 分钟`;
-      }
-      return `${this.timeLeft} 秒`;
-    },
+    timeLeft() {
+      const crowdSaleInterval = 1000 * 60 * 60 * 6;
+      return (this.startTime + crowdSaleInterval) - (new Date().getTime())
+    }
   },
 };
 </script>
