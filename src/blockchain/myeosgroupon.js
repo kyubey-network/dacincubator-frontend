@@ -8,7 +8,7 @@ export async function getContractGlobal() {
     limit: 50,
     table: 'global',
   });
-  return rows;
+  return rows[0];
 }
 export async function getCrowdSaleOrders() {
   const { rows } = await eos().getTableRows({
@@ -16,7 +16,7 @@ export async function getCrowdSaleOrders() {
     code: 'myeosgroupon',
     scope: 'myeosgroupon',
     limit: 50,
-    table: 'orders',
+    table: 'order',
   });
   return rows;
 }
