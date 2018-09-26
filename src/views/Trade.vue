@@ -1,6 +1,6 @@
 <template>
     <el-card class="stat">
-      <el-alert title="为什么没有 KBY 的单价？" type="info"
+      <el-alert title="为什么没有 KBY 的单价？" type="info" style="text-align: left;"
           description="价格随着市场供需而定，在 IBO 中，市价由供需、保证金等因素决定，所以你可直接投入你的数字资产，我们的 Bancor 协议会帮你汇兑。" show-icon />
       <el-row>
         <el-col :span="12">

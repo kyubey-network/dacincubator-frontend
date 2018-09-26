@@ -1,13 +1,13 @@
 <template>
-    <el-card class="stat">
-      <el-row>
-        <el-col :span="6">
+    <el-card class="stat" style="text-align: left;">
+      <el-row :gutter="10">
+        <el-col :span="3">
           <div class="scatter-stat">
             <p>Scatter 状态</p>
             <h2 class="small-title">{{ scatter ? "已加载" : "未发现" }}</h2>
           </div>
        </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
             <div class="scatter-id-stat">
               <p>你当前的账户</p>
               <div class="logined" v-if="account">
@@ -22,7 +22,7 @@
               </div>
             </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
             <div class="balance-stat">
               <p>账户余额 <el-button icon="el-icon-refresh" circle @click="updateBalance" /> </p>
                 <h2 class="small-title"> {{balance.eos}} </h2>
@@ -42,7 +42,6 @@
               <h2 class="small-title">{{supply}} </h2>
               <p>Market Balance</p>
               <h2 class="small-title">{{mbalance}} </h2>
-
             </div>
         </el-col>
 
@@ -89,7 +88,14 @@ export default {
 </script>
 
 <style scoped>
-.balance-stat .small-title {
+/* .balance-stat .small-title {
   text-align: right
+} */
+/* .el-col {
+  padding: 1rem;
+  border-right: 1px solid #eff2f6;
 }
+.el-col:last-child {
+    border-right: 0;
+} */
 </style>
