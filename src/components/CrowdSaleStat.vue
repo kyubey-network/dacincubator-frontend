@@ -83,7 +83,7 @@ export default {
     },
   },
   computed: {
-    ...mapState([ 'eos', 'mbalance', 'tokenPrice', 'supply']),
+    ...mapState(['eos', 'mbalance', 'tokenPrice', 'supply']),
     ...mapGetters(['account']),
     startTime() {
       return this.global.claim_time * 1000;

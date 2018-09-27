@@ -37,7 +37,10 @@ export default {
   name: 'app',
   data: () => ({}),
   components: {
-    Dashboard, CustomFooter: Footer, CustomHeader: Header, CrowdSaleStat,
+    Dashboard,
+    CustomFooter: Footer,
+    CustomHeader: Header,
+    CrowdSaleStat,
     HistoryPanel: () => import(/* webpackChunkName: "ReservationHistory" */ './components/ReservationHistory'),
   },
   created() {
