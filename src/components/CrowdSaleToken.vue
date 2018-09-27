@@ -25,7 +25,7 @@
                 </el-input>
             </el-form-item> -->
         </el-form>
-        <el-button type="primary" @click="buy"> 购买 </el-button>
+        <el-button type="primary" @click="buy"> 投币预约团购 </el-button>
     </el-card>
 </template>
 
