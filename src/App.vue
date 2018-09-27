@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import { LeftPanel, CrowdSaleStat, Footer, Header } from './components';
 import { mapState, mapActions, mapGetters } from 'vuex';
+import { LeftPanel, CrowdSaleStat, Footer, Header } from './components';
 import { network } from './config';
 
 const requiredFields = { accounts: [network] };
@@ -69,9 +69,6 @@ export default {
     async forgetId() {
       await this.scatter.forgetIdentity();
       this.setIdentity(null);
-    },
-    async buy() {
-      const amountOfEOS = prompt('请输入你要购少 KBY 等值的 EOS？');
     },
     async suggestNetworkSetting() {
       try {

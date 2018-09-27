@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import Dashboard from './Dashboard';
+import Dashboard from './Dashboard.vue';
 
 export default {
   name: 'LeftPanel',
   components: {
     Dashboard,
-    HistoryPanel: () => import(/* webpackChunkName: "ReservationOrders" */ './ReservationOrders'),
+    HistoryPanel: () => import(/* webpackChunkName: "ReservationOrders" */ './ReservationOrders/index.vue'),
   },
 };
 </script>

@@ -1,6 +1,8 @@
 <template>
     <el-card class="orders-list">
-        <h2 class="title">当前预约 <el-button circle @click="fetchActions" icon="el-icon-refresh" ></el-button> </h2>
+        <h2 class="title">当前预约
+          <el-button circle @click="fetchActions" icon="el-icon-refresh"/>
+        </h2>
         <el-table
             :data="orders"
             style="width: 100%">
@@ -20,8 +22,8 @@
 
 <script>
 import { mapState } from 'vuex';
-import { compose } from 'ramda';
-import { receiptFilter, getTheReceipt, convertTimestamp } from './helper';
+// import { compose } from 'ramda';
+// import { receiptFilter, getTheReceipt, convertTimestamp } from './helper';
 import { getCrowdSaleOrders } from '@/blockchain';
 
 export default {
@@ -36,7 +38,7 @@ export default {
   },
 
   async created() {
-    if (eos) {
+    if (this.eos) {
       this.eosLoaded = true;
       this.fetchActions();
     }

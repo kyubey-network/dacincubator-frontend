@@ -107,7 +107,7 @@ export default {
       });
     },
     async sell() {
-      const { eos, account } = this;
+      const { account } = this;
       const amountOfKBY = Number(prompt('请输入你出售多少个 KBY？ （格式1.0000)')).toFixed(4);
       const memo = 'sell';
       try {

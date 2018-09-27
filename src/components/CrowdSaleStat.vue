@@ -13,7 +13,10 @@
                 </countdown>
             </div>
               <div class="token-price-stat">
-              <p> <i class="iconfont icon-price"></i> KBY 参考价 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
+              <p>
+                <i class="iconfont icon-price"></i>
+                KBY 参考价 <el-button icon="el-icon-refresh" @click="updatePrice" circle />
+              </p>
                 <h2 class="small-title"> {{tokenPrice}} </h2>
             </div>
         </el-col>
