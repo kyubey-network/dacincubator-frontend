@@ -49,11 +49,11 @@ export async function getSupply() {
   return Number(supply.slice(0, -5));
 }
 
-export async function getActions() {
-  // async function below return `getActionsResult` (Check EOSJS api for detail)
-  const { actions } = await eos().getActions('myeosgroupon', -1, -50);
-  // Return actions for now
-  return actions;
-}
+// export async function getActions() {
+//   // async function below return `getActionsResult` (Check EOSJS api for detail)
+//   const { actions } = await eos().getActions('myeosgroupon', -1, -50);
+//   // Return actions for now
+//   return actions;
+// }
 
 export { getContractGlobal, getCrowdSaleOrders } from './myeosgroupon';
