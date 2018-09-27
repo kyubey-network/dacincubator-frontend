@@ -41,9 +41,6 @@
 import { mapState, mapActions, mapGetters } from 'vuex';
 import VueCountdown from '@xkeshi/vue-countdown';
 import { getContractGlobal, getCrowdSaleOrders } from '../blockchain';
-import { network } from '../config';
-
-const requiredFields = { accounts: [network] };
 
 export default {
   name: 'CrowdSaleStat',

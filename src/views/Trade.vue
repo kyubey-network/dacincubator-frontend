@@ -21,7 +21,7 @@
 import { Notification } from 'element-ui';
 import { mapState, mapGetters } from 'vuex';
 import { CrowdSale } from '../components';
-import { network } from '../config';
+// import { network } from '../config';
 
 // not used, 留在未来使用
 // const requiredFields = { accounts: [network] };
