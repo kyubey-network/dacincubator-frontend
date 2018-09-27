@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import VueCountdown from '@xkeshi/vue-countdown';
 import { getContractGlobal, getCrowdSaleOrders } from '../blockchain';
 import { network } from '../config';

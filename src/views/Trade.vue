@@ -19,11 +19,12 @@
 
 <script>
 import { Notification } from 'element-ui';
+import { mapState, mapGetters } from 'vuex';
 import { CrowdSale } from '../components';
-import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import { network } from '../config';
 
-const requiredFields = { accounts: [network] };
+// not used, 留在未来使用
+// const requiredFields = { accounts: [network] };
 
 export default {
   name: 'Trade',
@@ -68,7 +69,7 @@ export default {
       });
     },
     async sell() {
-      const { eos, account } = this;
+      const { account } = this;
       const amountOfKBY = Number(prompt('请输入你出售多少个 KBY？ （格式1.0000)')).toFixed(4);
       const memo = 'sell';
       try {
