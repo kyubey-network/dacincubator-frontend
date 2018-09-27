@@ -22,7 +22,7 @@
 import { mapState } from 'vuex';
 import { compose } from 'ramda';
 import { receiptFilter, getTheReceipt, convertTimestamp } from './helper';
-import { getCrowdSaleOrders } from '../../blockchain';
+import { getCrowdSaleOrders } from '@/blockchain';
 
 export default {
   name: 'ReservationOrders',

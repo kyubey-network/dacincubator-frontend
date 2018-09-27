@@ -30,8 +30,8 @@
 
 <script>
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
-import { getContractGlobal, getCrowdSaleOrders } from '../blockchain';
-import { network } from '../config';
+import { getContractGlobal, getCrowdSaleOrders } from '@/blockchain';
+import { network } from '@/config';
 
 const requiredFields = { accounts: [network] };
 

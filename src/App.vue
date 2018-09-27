@@ -8,15 +8,7 @@
           <el-row :gutter="10">
             <!-- Left Panel -->
             <el-col :span="5" :xs="24">
-              <el-row :gutter="10">
-                <el-col :xs="24" :span="24">
-                  <Dashboard />
-                </el-col>
-                <el-col :xs="0" :span="24">
-                  <HistoryPanel />
-                </el-col>
-              </el-row>
-
+              <LeftPanel />
             </el-col>
             <el-col :span="12" :xs="24">
               <!-- Panel in the middle  -->
@@ -40,7 +32,7 @@
 </template>
 
 <script>
-import { Dashboard, CrowdSaleStat, Footer, Header } from './components';
+import { LeftPanel, CrowdSaleStat, Footer, Header } from './components';
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 import { network } from './config';
 
@@ -50,7 +42,7 @@ export default {
   name: 'app',
   data: () => ({}),
   components: {
-    Dashboard,
+    LeftPanel,
     CustomFooter: Footer,
     CustomHeader: Header,
     CrowdSaleStat,
