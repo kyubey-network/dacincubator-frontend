@@ -1,5 +1,5 @@
 <template>
-    <el-card class="trade-panel">
+    <div class="trade-panel">
 
         <el-form label-position="left" label-width="120px" :model="orderForm">
             <el-form-item label="投入 EOS 数量">
@@ -26,7 +26,7 @@
             </el-form-item> -->
         </el-form>
         <el-button type="primary" @click="buy"> 投币预约团购 </el-button>
-    </el-card>
+    </div>
 </template>
 
 <script>

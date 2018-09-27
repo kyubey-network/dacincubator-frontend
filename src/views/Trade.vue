@@ -5,11 +5,11 @@
       <el-alert title="好消息！好消息！" type="warning" style="text-align: left;"
           description="我们开启了 IBO 团购通道。通过团购合约进行 IBO 有优惠价哦，名额与份额有限，让我们一起“拼”吧。（拼团购买的 KBY 代币需要等拼团结束后才发放）" show-icon />
       <el-row>
-        <el-col :span="12">
+        <el-col :span="12" :xs="24">
           <h2 class="subtitle"> 使用 EOS <del>买入</del> 团购 KBY </h2>
           <CrowdSale />
         </el-col>
-        <el-col :span="12">
+        <el-col :span="12" :xs="24">
           <h2 class="subtitle"> 卖出 KBY 得到 EOS </h2>
           <el-button type="danger" @click="sell" :disabled="!account"> 简陋卖出 </el-button>
         </el-col>

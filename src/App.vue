@@ -6,13 +6,23 @@
         </el-header>
         <el-main>
           <el-row :gutter="10">
-            <el-col :span="6">
-              <Dashboard />
-              <HistoryPanel />
+            <el-col :span="6" :xs="24">
+              <el-row :gutter="10">
+                <el-col :xs="24" :span="24">
+                  <Dashboard />
+                </el-col>
+                <el-col :xs="0" :span="24">
+                  <HistoryPanel />
+                </el-col>
+              </el-row>
+              
             </el-col>
-            <el-col :span="18">
+            <el-col :span="12" :xs="24">
               <CrowdSaleStat/>
               <router-view />
+            </el-col>
+            <el-col :span="6" :xs="0" style="color: #FFF ;background: #555; height: 12rem">
+              Coming soon
             </el-col>
           </el-row>
 

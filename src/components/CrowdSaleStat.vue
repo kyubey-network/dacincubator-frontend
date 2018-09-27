@@ -1,7 +1,7 @@
 <template>
     <el-card class="stat" style="text-align: left;">
       <el-row :gutter="10">
-        <el-col :span="8">
+        <el-col :span="8" :xs="12">
             <div class="timing" v-if="global.claim_time">
                 <p> <i class="el-icon-time"></i> 团购剩余时间</p>
                 <countdown :time="timeLeft">
@@ -17,7 +17,7 @@
                 <h2 class="small-title"> {{tokenPrice}} </h2>
             </div>
         </el-col>
-        <el-col :span="8">
+        <el-col :span="8" :xs="0">
               <div class="KBY-stat">
               <p>Market Supply</p>
               <h2 class="small-title">{{supply}} </h2>
@@ -25,7 +25,7 @@
               <h2 class="small-title">{{mbalance}} </h2>
             </div>
         </el-col>
-        <el-col :span="8">
+        <el-col :span="8" :xs="12">
             <div class="reserve-stat">
               <p> <i class="iconfont icon-trade"></i> 本轮预约金额</p>
               <h2 class="small-title"> {{reserveBalance}} </h2>
