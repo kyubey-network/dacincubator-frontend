@@ -16,7 +16,7 @@
                   <HistoryPanel />
                 </el-col>
               </el-row>
-              
+
             </el-col>
             <el-col :span="12" :xs="24">
               <!-- Panel in the middle  -->

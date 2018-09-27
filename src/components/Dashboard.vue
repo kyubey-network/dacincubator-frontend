@@ -10,7 +10,7 @@
                 <h2 class="small-title">{{account.name}}</h2>
                 <div class="balance-stat">
                   <p><i class="iconfont icon-wallet"></i>
-                    账户余额 
+                    账户余额
                     <el-button icon="el-icon-refresh" circle @click="updateBalance" />
                   </p>
                     <h2 class="small-title"> <i class="iconfont icon-EOS"/> {{balance.eos}} </h2>

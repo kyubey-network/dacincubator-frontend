@@ -48,7 +48,7 @@ export default {
   methods: {
     async fetchActions() {
       const orders = await getCrowdSaleOrders();
-      this.orders = orders
+      this.orders = orders;
     },
   },
   computed: {
