@@ -1,22 +1,18 @@
 <template>
-    <el-card class="actions-list">
-        <h2 class="title">预约记录 <el-button circle @click="fetchActions" icon="el-icon-refresh" ></el-button> </h2>
+    <el-card class="orders-list">
+        <h2 class="title">当前预约 <el-button circle @click="fetchActions" icon="el-icon-refresh" ></el-button> </h2>
         <el-table
-            :data="actions"
+            :data="orders"
             style="width: 100%">
             <el-table-column
                 prop="account"
                 label="账户"
-                width="100">
+                width="120">
             </el-table-column>
             <el-table-column
                 prop="quantity"
                 label="数额"
-                width="100">
-            </el-table-column>
-            <el-table-column
-                prop="time"
-                label="时间">
+                width="120">
             </el-table-column>
         </el-table>
     </el-card>
@@ -26,10 +22,10 @@
 import { mapState } from 'vuex';
 import { compose } from 'ramda';
 import { receiptFilter, getTheReceipt, convertTimestamp } from './helper';
-import { getActions } from '../../blockchain';
+import { getCrowdSaleOrders } from '../../blockchain';
 
 export default {
-  name: 'ActionsList',
+  name: 'ReservationOrders',
   watch: {
     eos(val) {
       if (val && !this.eosLoaded) {
@@ -46,18 +42,13 @@ export default {
     }
   },
   data: () => ({
-    actions: [],
+    orders: [],
     eosLoaded: false,
   }),
   methods: {
     async fetchActions() {
-      const actions = await getActions();
-      // Functional style babe!
-      this.actions = compose(
-        convertTimestamp,
-        getTheReceipt,
-        receiptFilter,
-      )(actions);
+      const orders = await getCrowdSaleOrders();
+      this.orders = orders
     },
   },
   computed: {
