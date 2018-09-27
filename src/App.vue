@@ -33,7 +33,7 @@
 
 <script>
 import { LeftPanel, CrowdSaleStat, Footer, Header } from './components';
-import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import { network } from './config';
 
 const requiredFields = { accounts: [network] };
@@ -46,7 +46,6 @@ export default {
     CustomFooter: Footer,
     CustomHeader: Header,
     CrowdSaleStat,
-    HistoryPanel: () => import(/* webpackChunkName: "ReservationOrders" */ './components/ReservationOrders'),
   },
   created() {
     // @TODO: replace with Scatter JS
