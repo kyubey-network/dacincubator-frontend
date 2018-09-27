@@ -86,16 +86,17 @@ export default {
           },
         );
       } catch (error) {
-        // @notice: I fucking hate EOS.JS, they return error as string instead of Error
+        // @!workaround: I fucking hate EOS.JS, error is unpredictable
+        // maybe return type error as type `string` or type `Error`
         if (typeof error === 'string') {
-          error = JSON.parse(error)
+          error = JSON.parse(error);
         }
-        console.error(error)
+        console.error(error);
         let errorMsg;
         if (error.error) {
-          errorMsg = `原因: ${error.error.details[0].message}`
+          errorMsg = `原因: ${error.error.details[0].message}`;
         } else {
-          errorMsg = `原因: ${error.message}`
+          errorMsg = `原因: ${error.message}`;
         }
         Notification.error({
           title: '购买失败',
