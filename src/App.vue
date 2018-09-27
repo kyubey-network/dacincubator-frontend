@@ -8,6 +8,7 @@
           <el-row :gutter="10">
             <el-col :span="6">
               <Dashboard />
+              <HistoryPanel />
             </el-col>
             <el-col :span="18">
               <CrowdSaleStat/>
@@ -37,6 +38,7 @@ export default {
   data: () => ({}),
   components: {
     Dashboard, CustomFooter: Footer, CustomHeader: Header, CrowdSaleStat,
+    HistoryPanel: () => import(/* webpackChunkName: "ReservationHistory" */ './components/ReservationHistory'),
   },
   created() {
     // @TODO: replace with Scatter JS
@@ -75,13 +77,6 @@ export default {
   computed: {
     ...mapState(['identity', 'scatter', 'eos', 'account']),
     ...mapGetters(['account']),
-    // account() {
-    //   return this.identity.accounts.find(({ blockchain }) => blockchain === 'eos');
-    // },
-    // username() {
-    //   const { account } = this;
-    //   return account ? account.name : null;
-    // }
   },
 };
 </script>
