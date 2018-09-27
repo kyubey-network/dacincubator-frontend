@@ -76,7 +76,7 @@ export default {
 
       const memo = '';
       try {
-        await eos.transfer(
+        const result = await eos.transfer(
           account.name,
           'myeosgroupon',
           `${amountOfEOS.toFixed(4)} EOS`,
@@ -85,14 +85,21 @@ export default {
             authorization: [`${account.name}@${account.authority}`],
           },
         );
-        Notification.success({
-          title: '购买成功',
-          message: '请稍后查询你的余额',
-        });
       } catch (error) {
+        // @notice: I fucking hate EOS.JS, they return error as string instead of Error
+        if (typeof error === 'string') {
+          error = JSON.parse(error)
+        }
+        console.error(error)
+        let errorMsg;
+        if (error.error) {
+          errorMsg = `原因: ${error.error.details[0].message}`
+        } else {
+          errorMsg = `原因: ${error.message}`
+        }
         Notification.error({
           title: '购买失败',
-          message: `原因: ${error.message}`,
+          message: errorMsg,
           duration: 0,
         });
       }
@@ -119,7 +126,7 @@ export default {
           account,
         });
         Notification.success({
-          title: '购买成功',
+          title: '销售成功',
           message: '请稍后查询你的余额',
         });
       } catch (error) {
