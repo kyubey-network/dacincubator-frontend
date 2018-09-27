@@ -6,7 +6,8 @@
         </el-header>
         <el-main>
           <el-row :gutter="10">
-            <el-col :span="6" :xs="24">
+            <!-- Left Panel -->
+            <el-col :span="5" :xs="24">
               <el-row :gutter="10">
                 <el-col :xs="24" :span="24">
                   <Dashboard />
@@ -18,11 +19,13 @@
               
             </el-col>
             <el-col :span="12" :xs="24">
+              <!-- Panel in the middle  -->
               <CrowdSaleStat/>
               <router-view />
             </el-col>
             <el-col :span="6" :xs="0" style="color: #FFF ;background: #555; height: 12rem">
-              Coming soon
+              <h1 class="title"> New Feature pending</h1>
+              <p class="subtitle">Coming soon, seat back and relax. </p>
             </el-col>
           </el-row>
 

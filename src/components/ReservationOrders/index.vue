@@ -7,12 +7,12 @@
             <el-table-column
                 prop="account"
                 label="账户"
-                width="120">
+                width="110">
             </el-table-column>
             <el-table-column
                 prop="quantity"
                 label="数额"
-                width="120">
+                width="150">
             </el-table-column>
         </el-table>
     </el-card>
