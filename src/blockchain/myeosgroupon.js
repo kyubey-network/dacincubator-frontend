@@ -15,7 +15,7 @@ export async function getCrowdSaleOrders() {
     json: 'true',
     code: 'myeosgroupon',
     scope: 'myeosgroupon',
-    limit: 50,
+    limit: 65535,
     table: 'order',
   });
   return rows;
