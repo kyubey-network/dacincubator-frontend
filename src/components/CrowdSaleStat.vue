@@ -3,7 +3,7 @@
       <el-row :gutter="10">
         <el-col :span="8">
             <div class="timing" v-if="global.claim_time">
-                <p>团购剩余时间</p>
+                <p> <i class="el-icon-time"></i> 团购剩余时间</p>
                 <countdown :time="timeLeft">
                   <template slot-scope="props">
                     <h1 class="small-title">
@@ -13,7 +13,7 @@
                 </countdown>
             </div>
               <div class="token-price-stat">
-              <p>KBY 目前单价 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
+              <p> <i class="iconfont icon-price"></i> KBY 参考价 <el-button icon="el-icon-refresh" @click="updatePrice" circle /></p>
                 <h2 class="small-title"> {{tokenPrice}} </h2>
             </div>
         </el-col>
@@ -27,9 +27,9 @@
         </el-col>
         <el-col :span="8">
             <div class="reserve-stat">
-              <p>本轮预约金额</p>
+              <p> <i class="iconfont icon-trade"></i> 本轮预约金额</p>
               <h2 class="small-title"> {{reserveBalance}} </h2>
-              <p>本轮预约人数</p>
+              <p> <i class="iconfont icon-user"></i> 本轮预约人数</p>
               <h2 class="small-title"> {{reservePeoples}} </h2>
             </div>
         </el-col>
