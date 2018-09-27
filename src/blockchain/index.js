@@ -23,7 +23,7 @@ export async function getTokenPrice() {
     Number(supply.slice(0, -5)) / 10000000000).toFixed(4);
 }
 
-export async function getMBalance() {
+export async function getMarketData() {
   const { rows } = await eos().getTableRows({
     json: 'true',
     code: 'dacincubator',
@@ -31,29 +31,14 @@ export async function getMBalance() {
     limit: 50,
     table: 'market',
   });
-  const { balance } = rows[0];
+  const { supply, balance } = rows[0];
+  const price = (Number(supply.slice(0, -5)) / 10000000000).toFixed(4);
   // @Magic Number: 10000000000 = 10^10
-  return Number(balance.slice(0, -5));
+  return {
+    price,
+    supply,
+    balance,
+  };
 }
-
-export async function getSupply() {
-  const { rows } = await eos().getTableRows({
-    json: 'true',
-    code: 'dacincubator',
-    scope: 'dacincubator',
-    limit: 50,
-    table: 'market',
-  });
-  const { supply } = rows[0];
-  // @Magic Number: 10000000000 = 10^10
-  return Number(supply.slice(0, -5));
-}
-
-// export async function getActions() {
-//   // async function below return `getActionsResult` (Check EOSJS api for detail)
-//   const { actions } = await eos().getActions('myeosgroupon', -1, -50);
-//   // Return actions for now
-//   return actions;
-// }
 
 export { getContractGlobal, getCrowdSaleOrders } from './myeosgroupon';

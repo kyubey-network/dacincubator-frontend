@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Eos from 'eosjs';
-import { getTokenPrice, getMyBalancesByContract, getSupply, getMBalance } from './blockchain';
+import { getMyBalancesByContract, getMarketData } from './blockchain';
 import { network } from './config';
 
 
@@ -36,14 +36,11 @@ export default new Vuex.Store({
     setIdentity(state, identity) {
       state.identity = identity;
     },
-    setTokenPrice(state, price) {
+    setMarketData(state, data) {
+      const { price, supply, balance } = data;
       state.tokenPrice = `${price} EOS`;
-    },
-    setSupply(state, supply) {
-      state.supply = `${supply} KBY`;
-    },
-    setMBalance(state, mbalance) {
-      state.mbalance = `${mbalance} EOS`;
+      state.supply = supply;
+      state.mbalance = balance;
     },
     setBalance(state, { symbol, balance }) {
       state.balance[symbol] = balance || `0.0000 ${symbol.toUpperCase()}`;
@@ -52,25 +49,11 @@ export default new Vuex.Store({
   actions: {
     initScatter({ commit, dispatch }, scatter) {
       commit('setScatter', scatter);
-      dispatch('updatePrice');
-      dispatch('updateSupply');
-      dispatch('updateMBalance');
+      dispatch('updateMarketData');
     },
-    async updatePrice({ commit }) {
-      const price = await getTokenPrice();
-      commit('setTokenPrice', price);
-    },
-    async updateBalance({ commit }) {
-      const Balance = await getBalance();
-      commit('setBalance', Balance);
-    },
-    async updateSupply({ commit }) {
-      const supply = await getSupply();
-      commit('setSupply', supply);
-    },
-    async updateMBalance({ commit }) {
-      const mbalance = await getMBalance();
-      commit('setMBalance', mbalance);
+    async updateMarketData({ commit }) {
+      const marketData = await getMarketData();
+      commit('setMarketData', marketData);
     },
     updateBalance({ commit }) {
       getMyBalancesByContract({ symbol: 'eos' })
