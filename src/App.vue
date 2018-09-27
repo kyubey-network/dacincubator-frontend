@@ -51,7 +51,7 @@ export default {
     CustomFooter: Footer,
     CustomHeader: Header,
     CrowdSaleStat,
-    HistoryPanel: () => import(/* webpackChunkName: "ReservationHistory" */ './components/ReservationHistory'),
+    HistoryPanel: () => import(/* webpackChunkName: "ReservationOrders" */ './components/ReservationOrders'),
   },
   created() {
     // @TODO: replace with Scatter JS
