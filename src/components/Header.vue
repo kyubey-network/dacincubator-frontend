@@ -1,14 +1,16 @@
 <template>
-        <el-header>
           <div class="header">
-            <el-badge value="Beta" class="item">
-                <router-link to="/" class="header-link" >
-                    <h1 class="title">Kyubey IBO </h1>
-                </router-link>
-            </el-badge >
-            <h2 class="subtitle"> 请认准 Kyubey 官方域名以防损失 </h2>
+              <el-menu router :default-active="$route.path" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+                <el-menu-item index="/">
+                    <el-badge value="Beta" class="item">
+                            <h1 class="title">Kyubey IBO </h1>
+                    </el-badge >
+                </el-menu-item>
+                <el-menu-item index="/home"> 首页 </el-menu-item>
+                <el-menu-item index="/IBO"> IBO </el-menu-item>
+                <el-menu-item index="/manage" disabled=""> KBY 管理 </el-menu-item>
+            </el-menu>
           </div>
-      </el-header>
 </template>
 
 <style scoped>
@@ -16,4 +18,16 @@
     text-decoration: none;
     color: #000;
 }
+.title {
+    margin: 0;
+}
 </style>
+
+<script>
+export default {
+    name: 'Header Navbar',
+    created() {
+        console.log(this.$route)
+    }
+}
+</script>

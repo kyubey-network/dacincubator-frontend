@@ -11,8 +11,18 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Trade,
+      name: 'Logo',
+      redirect: { name: 'Home' }
+    },
+    {
+      path: '/home',
+      name: 'Home',
+      redirect: { name: 'IBOCrowdSale' }
+    },
+    {
+      path: '/IBO',
+      name: 'IBOCrowdSale',
+      component: Trade
     },
   ],
 });
