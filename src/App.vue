@@ -24,13 +24,6 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex';
-// import {
-//   LeftPanel,
-//   CrowdSaleStat,
-//   Footer,
-//   Header,
-//   RightPanel,
-// } from './components';
 import { network } from './config';
 
 const requiredFields = { accounts: [network] };
@@ -39,11 +32,6 @@ export default {
   name: 'app',
   data: () => ({}),
   components: {
-    // LeftPanel,
-    // CustomFooter: Footer,
-    // CustomHeader: Header,
-    // CrowdSaleStat,
-    // RightPanel,
   },
   created() {
     // @TODO: replace with Scatter JS

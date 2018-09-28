@@ -16,30 +16,6 @@ import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'Sell',
-  props: {
-    actionType: {
-      type: String,
-      default: 'BUY',
-      validator(value) {
-        // The value must match one of these strings
-        return ['BUY', 'SELL'].indexOf(value) !== -1;
-      },
-    },
-    tokenA: {
-      type: Object,
-      default: () => ({
-        name: 'EOS',
-        contract: 'eosio.token',
-      }),
-    },
-    tokenB: {
-      type: Object,
-      default: () => ({
-        name: 'KBY',
-        contract: 'dacincubator',
-      }),
-    },
-  },
   data: () => ({
     amountOfKBY: '',
   }),
@@ -58,13 +34,14 @@ export default {
       });
     },
     async sell() {
-      const { account, amountOfKBY } = this;
+      var { account, amountOfKBY } = this;
+      amountOfKBY = Number(amountOfKBY)
       const memo = 'sell';
       try {
         await this.eosTokenTransfer({
           tokenContract: 'dacincubator',
           to: 'dacincubator',
-          amount: `${amountOfKBY} KBY`,
+          amount: `${amountOfKBY.toFixed(4)} KBY`,
           memo,
           account,
         });
