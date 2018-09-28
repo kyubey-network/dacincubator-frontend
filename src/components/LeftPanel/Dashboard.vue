@@ -1,30 +1,31 @@
 <template>
     <el-card class="stat" style="text-align: left;">
-          <div class="scatter-stat">
+      <el-row :gutter="10">
+        <el-col :xs="24" :sm="12">
+          <div class="scatter-stat" v-if="!account">
             <p> <i class="iconfont icon-scatter"></i> Scatter 状态</p>
             <h2 class="small-title">{{ scatter ? "已加载" : "未发现" }}</h2>
+            <el-button type="primary" :disabled="!scatter" @click="requestId">
+                  <i class="iconfont icon-scatter"></i>通过 Scatter 登录
+            </el-button>
           </div>
-            <div class="scatter-id-stat">
-              <p> <i class="iconfont icon-user"></i> 你当前的账户</p>
-              <div class="logined" v-if="account">
-                <h2 class="small-title">{{account.name}}</h2>
-                <div class="balance-stat">
+          <div class="account-stat" v-else>
+              <p> <i class="iconfont icon-user"></i> 当前账户</p>
+              <h2 class="small-title">{{account.name}}</h2>
+              <el-button type="danger"  @click="forgetId">退出登录</el-button>
+          </div>
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="24">
+            <div class="balance-stat">
                   <p><i class="iconfont icon-wallet"></i>
                     账户余额
                     <el-button icon="el-icon-refresh" circle @click="updateBalance" />
                   </p>
                     <h2 class="small-title"> <i class="iconfont icon-EOS"/> {{balance.eos}} </h2>
                     <h2 class="small-title"> {{balance.kby}} </h2>
-                </div>
-                <el-button type="danger"  @click="forgetId">退出身份</el-button>
-              </div>
-              <div class="not-login" v-else>
-                <h2 class="small-title"> 未登录 </h2>
-                <el-button type="primary" :disabled="!scatter" @click="requestId">
-                  <i class="iconfont icon-scatter"></i>通过 Scatter 登录
-                </el-button>
-              </div>
             </div>
+        </el-col>
+      </el-row>
     </el-card>
 </template>
 

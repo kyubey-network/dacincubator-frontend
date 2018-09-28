@@ -7,7 +7,7 @@
         <el-main>
           <el-row :gutter="10">
             <!-- Left Panel -->
-            <el-col :span="5" :xs="24">
+            <el-col :span="6" :xs="24">
               <LeftPanel />
             </el-col>
             <el-col :span="12" :xs="24">
