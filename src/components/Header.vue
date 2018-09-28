@@ -25,9 +25,9 @@
 
 <script>
 export default {
-    name: 'Header Navbar',
-    created() {
-        console.log(this.$route)
-    }
-}
+  name: 'Header Navbar',
+  created() {
+    console.log(this.$route);
+  },
+};
 </script>

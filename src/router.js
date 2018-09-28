@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 // import Home from './views/Home.vue';
-import { Trade } from './views';
+import { Home, Buy, Sell, Orders, Help } from './views';
 
 Vue.use(Router);
 
@@ -11,18 +11,28 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Logo',
-      redirect: { name: 'Home' }
-    },
-    {
-      path: '/home',
       name: 'Home',
-      redirect: { name: 'IBOCrowdSale' }
+      component: Home,
     },
     {
-      path: '/IBO',
-      name: 'IBOCrowdSale',
-      component: Trade
+      path: '/buy',
+      name: 'Buy',
+      component: Buy,
+    },
+    {
+      path: '/sell',
+      name: 'Sell',
+      component: Sell,
+    },
+    {
+      path: '/orders',
+      name: 'Orders',
+      component: Orders,
+    },
+    {
+      path: '/help',
+      name: 'Help',
+      component: Help,
     },
   ],
 });

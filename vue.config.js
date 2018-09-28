@@ -3,6 +3,6 @@ module.exports = {
 
   pwa: {
     name: 'Kyubey IBO',
-    msTileColor: '#4DBA87'
-  }
+    msTileColor: '#4DBA87',
+  },
 };

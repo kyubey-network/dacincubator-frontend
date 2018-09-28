@@ -6,24 +6,6 @@
                         <el-input-number placeholder="价格最多可精确到后4位小数点" controls-position="right"
                         :precision="4" :step="0.0001" :min="0.0001" v-model="orderForm.amount" />
             </el-form-item>
-            <!-- <el-form-item label="快速调整">
-                <el-button-group>
-                <el-button type="primary" size="mini">25%</el-button>
-                <el-button type="primary" size="mini">50%</el-button>
-                <el-button type="primary" size="mini">75%</el-button>
-                <el-button type="primary" size="mini">梭哈</el-button>
-                </el-button-group>
-            </el-form-item> -->
-            <!-- <el-form-item label="目前单价">
-                <el-input v-model="kbyInEOS" disabled="disabled">
-                    <template slot="append">{{tokenA.name}}</template>
-                </el-input>
-            </el-form-item>
-            <el-form-item label="预计结果">
-                <el-input v-model="totalPrice">
-                    <template slot="append">{{tokenA.name}}</template>
-                </el-input>
-            </el-form-item> -->
         </el-form>
         <el-button type="primary" @click="buy"> 投币预约团购 </el-button>
     </div>

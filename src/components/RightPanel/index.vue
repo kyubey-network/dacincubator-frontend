@@ -8,16 +8,19 @@
 
 
 <script>
-import qrcode from "@xkeshi/vue-qrcode";
+import qrcode from '@xkeshi/vue-qrcode';
+
 export default {
-    data: "RightPanel",
-    components: {
-        qrcode
+  data() {
+    return 'RightPanel';
+  },
+  components: {
+    qrcode,
+  },
+  computed: {
+    currentUrl() {
+      return window.location.href;
     },
-    computed: {
-        currentUrl() {
-            return window.location.href
-        }
-    }
-}
+  },
+};
 </script>

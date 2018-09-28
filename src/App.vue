@@ -1,38 +1,36 @@
 <template>
   <div id="app">
-    <el-container>
-        <el-header>
-          <CustomHeader/>
-        </el-header>
-        <el-main>
-          <el-row :gutter="10">
-            <!-- Left Panel -->
-            <el-col :span="6" :xs="24">
-              <LeftPanel />
-            </el-col>
-            <el-col :span="12" :xs="24">
-              <!-- Panel in the middle  -->
-              <CrowdSaleStat/>
-              <router-view />
-            </el-col>
-            <el-col :span="6" :xs="0" style="height: 12rem">
-              <RightPanel />
-            </el-col>
-          </el-row>
-
-        </el-main>
-        <el-footer>
-            <CustomFooter/>
-        </el-footer>
-    </el-container>
-
-
+    <section id="home">
+        <div class="overlay"></div>
+          <div class="container">
+               <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                         <div class="home-info">
+                           <div>
+                             <ul class="navigator">
+                                <li :class="route.isNow ? 'active' : ''" v-for="route in navs" :key="route.name">
+                                  <router-link :to="route.path"><i :class="'fa ' + route.icon"></i> {{route.name}} </router-link>
+                                </li>
+                             </ul>
+                           </div>
+                           <router-view />
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </section>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex';
-import { LeftPanel, CrowdSaleStat, Footer, Header, RightPanel } from './components';
+// import {
+//   LeftPanel,
+//   CrowdSaleStat,
+//   Footer,
+//   Header,
+//   RightPanel,
+// } from './components';
 import { network } from './config';
 
 const requiredFields = { accounts: [network] };
@@ -41,11 +39,11 @@ export default {
   name: 'app',
   data: () => ({}),
   components: {
-    LeftPanel,
-    CustomFooter: Footer,
-    CustomHeader: Header,
-    CrowdSaleStat,
-    RightPanel
+    // LeftPanel,
+    // CustomFooter: Footer,
+    // CustomHeader: Header,
+    // CrowdSaleStat,
+    // RightPanel,
   },
   created() {
     // @TODO: replace with Scatter JS
@@ -81,6 +79,39 @@ export default {
   computed: {
     ...mapState(['identity', 'scatter', 'eos', 'account']),
     ...mapGetters(['account']),
+    currentViewName() {
+      const { name } = this.$route;
+      return name;
+    },
+    navs() {
+      const name = this.currentViewName;
+      const routes = [
+        {
+        path: '/',
+        icon: 'fa-home',
+        name: 'Home',
+      },{
+        path: '/buy',
+        name: 'Buy',
+        icon: 'fa-sign-in',
+      },
+      {
+        path: '/sell',
+        name: 'Sell',
+        icon: 'fa-sign-out',
+      },
+      {
+        path: '/orders',
+        icon: 'fa-exchange',
+        name: 'Orders',
+      },
+      {
+        path: '/help',
+        icon: 'fa-question',
+        name: 'Help',
+      }];
+      return routes.map(route => Object.assign(route, { isNow: route.name === name }));
+    },
   },
 };
 </script>

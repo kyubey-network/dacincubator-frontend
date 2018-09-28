@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Notification, MessageBox } from "element-ui";
+import { Notification, MessageBox } from 'element-ui';
 import { register } from 'register-service-worker';
 
 if (process.env.NODE_ENV === 'production') {
@@ -11,12 +11,12 @@ if (process.env.NODE_ENV === 'production') {
     cached() {
       console.log('Content has been cached for offline use.');
     },
-    updatefound ( ) {
-      console.log('New content is downloading.')
+    updatefound() {
+      console.log('New content is downloading.');
       Notification.info({
         title: '发现新版本',
-        message: '正在后台更新应用，稍后静默安装，完成后提醒。'
-      })
+        message: '正在后台更新应用，稍后静默安装，完成后提醒。',
+      });
     },
     updated() {
       console.log('New content is available; please refresh.');
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
         confirmButtonText: '确定',
         callback: (action) => {
           // skipWaiting()
-        }
+        },
       });
     },
     offline() {
