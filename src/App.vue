@@ -15,9 +15,8 @@
               <CrowdSaleStat/>
               <router-view />
             </el-col>
-            <el-col :span="6" :xs="0" style="color: #FFF ;background: #555; height: 12rem">
-              <h1 class="title"> New Feature pending</h1>
-              <p class="subtitle">Coming soon, seat back and relax. </p>
+            <el-col :span="6" :xs="0" style="height: 12rem">
+              <RightPanel />
             </el-col>
           </el-row>
 
@@ -33,7 +32,7 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex';
-import { LeftPanel, CrowdSaleStat, Footer, Header } from './components';
+import { LeftPanel, CrowdSaleStat, Footer, Header, RightPanel } from './components';
 import { network } from './config';
 
 const requiredFields = { accounts: [network] };
@@ -46,6 +45,7 @@ export default {
     CustomFooter: Footer,
     CustomHeader: Header,
     CrowdSaleStat,
+    RightPanel
   },
   created() {
     // @TODO: replace with Scatter JS

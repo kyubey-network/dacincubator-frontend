@@ -931,6 +931,12 @@
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/@xkeshi/vue-countdown/download/@xkeshi/vue-countdown-1.0.1.tgz#cce62c1d62d55e272e2e73af9da015548cdeaa74"
 
+"@xkeshi/vue-qrcode@^1.0.0":
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/@xkeshi/vue-qrcode/download/@xkeshi/vue-qrcode-1.0.0.tgz#e86e612bad5ffdf9b7956dff1ea3a48c35cd420d"
+  dependencies:
+    qrious "^4.0.2"
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/@xtuc/ieee754/download/@xtuc/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -5601,6 +5607,10 @@ punycode@^1.2.4, punycode@^1.4.1:
 q@^1.1.2:
   version "1.5.1"
   resolved "http://registry.npm.taobao.org/q/download/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
+
+qrious@^4.0.2:
+  version "4.0.2"
+  resolved "http://registry.npm.taobao.org/qrious/download/qrious-4.0.2.tgz#09c4d4079d2b961617f62c69cff3b9bb66a39693"
 
 qs@6.5.1:
   version "6.5.1"
