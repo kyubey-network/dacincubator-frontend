@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import { Table, TableColumn, Pagination } from "element-ui";
-import { splitEvery } from "ramda";
+import { Table, TableColumn, Pagination } from 'element-ui';
+import { splitEvery } from 'ramda';
 import { mapState } from 'vuex';
 import { getCrowdSaleOrders } from '@/blockchain';
 
@@ -47,12 +47,12 @@ export default {
   data: () => ({
     orders: [],
     ordersByPages: [],
-    currentPage: 1
+    currentPage: 1,
   }),
   components: {
-      "el-table": Table,
-      "el-table-column": TableColumn,
-      "el-pagination": Pagination,
+    'el-table': Table,
+    'el-table-column': TableColumn,
+    'el-pagination': Pagination,
   },
   computed: {
     ...mapState(['eos']),
@@ -75,7 +75,7 @@ export default {
   methods: {
     async fetchActions() {
       const orders = await getCrowdSaleOrders();
-      const ordersByPages = splitEvery(10, orders)
+      const ordersByPages = splitEvery(10, orders);
       this.orders = orders;
       this.ordersByPages = ordersByPages;
     },

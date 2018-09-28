@@ -34,8 +34,8 @@ export default {
       });
     },
     async sell() {
-      var { account, amountOfKBY } = this;
-      amountOfKBY = Number(amountOfKBY)
+      let { account, amountOfKBY } = this;
+      amountOfKBY = Number(amountOfKBY);
       const memo = 'sell';
       try {
         await this.eosTokenTransfer({

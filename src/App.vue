@@ -75,29 +75,29 @@ export default {
       const name = this.currentViewName;
       const routes = [
         {
-        path: '/',
-        icon: 'fa-home',
-        name: 'Home',
-      },{
-        path: '/buy',
-        name: 'Buy',
-        icon: 'fa-sign-in',
-      },
-      {
-        path: '/sell',
-        name: 'Sell',
-        icon: 'fa-sign-out',
-      },
-      {
-        path: '/orders',
-        icon: 'fa-exchange',
-        name: 'Orders',
-      },
-      {
-        path: '/help',
-        icon: 'fa-question',
-        name: 'Help',
-      }];
+          path: '/',
+          icon: 'fa-home',
+          name: 'Home',
+        }, {
+          path: '/buy',
+          name: 'Buy',
+          icon: 'fa-sign-in',
+        },
+        {
+          path: '/sell',
+          name: 'Sell',
+          icon: 'fa-sign-out',
+        },
+        {
+          path: '/orders',
+          icon: 'fa-exchange',
+          name: 'Orders',
+        },
+        {
+          path: '/help',
+          icon: 'fa-question',
+          name: 'Help',
+        }];
       return routes.map(route => Object.assign(route, { isNow: route.name === name }));
     },
   },
