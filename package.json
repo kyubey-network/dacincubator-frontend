@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build-deploy": "yarn run build && surge --project ./dist --domain dacos-demo.surge.sh",
-    "build-deploy-prod": "NODE_ENV=production yarn run build && surge --project ./dist --domain dacos-demo.surge.sh",
+    "build-deploy-prod": "NODE_ENV=production yarn run build && mv ./dist/index.html ./dist/202.html && surge --project ./dist --domain dacos-demo.surge.sh",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
