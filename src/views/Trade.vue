@@ -3,10 +3,10 @@
       <el-alert title="为什么没有 KBY 的单价？" type="info" style="text-align: left;"
           description="价格随着市场供需而定，在 IBO 中，市价由供需、保证金等因素决定，
           所以你可直接投入你的数字资产，我们的 Bancor 协议会帮你汇兑。" show-icon />
-      <el-alert title="好消息！好消息！" type="warning" style="text-align: left;"
-          description="我们开启了 IBO 团购通道。
-          通过团购合约进行 IBO 有优惠价哦，名额与份额有限，让我们一起“拼”吧。
-          （拼团购买的 KBY 代币需要等拼团结束后才发放）" show-icon />
+      <el-alert title="好消息！好消息！抢购机器人失业啦" type="warning" style="text-align: left;"
+          description="我们开启了 IBO 团购通道。通过团购合约进行 IBO 享受平均价哦，
+          跟机器人炒价 say byebye，团购份额有限，让我们一起“拼”吧。
+          （拼团时间为6小时，每次团购的 KBY 代币需要等拼团结束后才发放）" show-icon />
       <el-row>
         <el-col :span="12" :xs="24">
           <h2 class="subtitle"> 使用 EOS <del>买入</del> 团购 KBY </h2>
